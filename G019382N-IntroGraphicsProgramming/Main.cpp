@@ -49,20 +49,20 @@ void Main::Display()
 
 	p2.first = -1.0f;
 	p2.second = 1.0f;
-	DrawTriangle(p1, p2, p3);
+	//DrawTriangle(p1, p2, p3);
 
 
-	p1.first = 0.24;
-	p1.second = 1.0;
-	p2.first = 0.75;
-	p2.second = 0.45;
-	p3.first = -0.93;
-	p3.second = -0.1f;
+	//p1.first = 0.24;
+	//p1.second = 1.0;
+	//p2.first = 0.75;
+	//p2.second = 0.45;
+	//p3.first = -0.93;
+	//p3.second = -0.1f;
 
-	DrawTriangle(p1, p2, p3);
+	//DrawTriangle(p1, p2, p3);
 
 
-	DrawPolygon();
+	//DrawPolygon();
 
 
 	glFlush();

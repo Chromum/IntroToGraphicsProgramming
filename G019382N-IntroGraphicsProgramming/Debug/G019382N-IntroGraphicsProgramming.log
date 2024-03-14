@@ -1,17 +1,4 @@
-﻿  Main.cpp
-C:\Users\g019382n.STUDENT.003\source\repos\G019382N-IntroGraphicsProgramming\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(55,13): warning C4305: '=': truncation from 'double' to '_Ty1'
-          with
-          [
-              _Ty1=GLfloat
-          ]
-C:\Users\g019382n.STUDENT.003\source\repos\G019382N-IntroGraphicsProgramming\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(58,14): warning C4305: '=': truncation from 'double' to '_Ty2'
-          with
-          [
-              _Ty2=GLfloat
-          ]
-C:\Users\g019382n.STUDENT.003\source\repos\G019382N-IntroGraphicsProgramming\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(59,14): warning C4305: '=': truncation from 'double' to '_Ty1'
-          with
-          [
-              _Ty1=GLfloat
-          ]
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\g019382n.STUDENT.003\source\repos\G019382N-IntroGraphicsProgramming\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  GLUTCallbacks.cpp
+  Main.cpp
+  Generating Code...
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\g019382n\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
