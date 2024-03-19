@@ -128,12 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GL2D.h" />
+    <ClInclude Include="GL3D.h" />
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="GLUTUtils.h" />
     <ClInclude Include="Main.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GL2D.cpp" />
+    <ClCompile Include="GL3D.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>

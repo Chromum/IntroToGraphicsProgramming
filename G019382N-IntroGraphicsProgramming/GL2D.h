@@ -5,11 +5,7 @@
 #include "GL/freeglut.h"
 #include "GLUTCallbacks.h"
 #include "GLUTUtils.h"
-
 #include <utility>
-
-
-
 using namespace std;
 
 
@@ -36,7 +32,7 @@ public:
 	/// </summary>
 	void DrawPolygonColor(pair<GLfloat, GLfloat> p1, pair<GLfloat, GLfloat> p2, pair<GLfloat, GLfloat> p3, pair<GLfloat, GLfloat> p4, GlutColor color);
 
-
+	void DrawTriangleRotate(pair<GLfloat, GLfloat> p1, pair<GLfloat, GLfloat> p2, pair<GLfloat, GLfloat> p3, float rotation);
 
 
 

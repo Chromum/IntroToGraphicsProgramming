@@ -21,4 +21,12 @@ namespace GLUTCallbacks
 			main->Display();
 		}
 	}
+
+	void Timer(int preferedRefresh)
+	{
+		main->Update();
+		glutTimerFunc(preferedRefresh, GLUTCallbacks::Timer, preferedRefresh);
+	}
+
+	
 }

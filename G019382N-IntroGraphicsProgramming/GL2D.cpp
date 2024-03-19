@@ -53,3 +53,23 @@ void GL2D::DrawPolygonColor(pair<GLfloat, GLfloat> p1, pair<GLfloat, GLfloat> p2
 		glEnd();
 	}
 }
+
+void GL2D::DrawTriangleRotate(pair<GLfloat, GLfloat> p1, pair<GLfloat, GLfloat> p2, pair<GLfloat, GLfloat> p3, float rotation)
+{
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+
+	glBegin(GL_POLYGON);
+	{
+
+		glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
+		glVertex2f(p1.first, p1.second);
+		glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
+		glVertex2f(p2.first, p2.second);
+		glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
+		glVertex2f(p3.first, p3.second);
+		glEnd();
+	}
+
+	glPopMatrix();
+}
