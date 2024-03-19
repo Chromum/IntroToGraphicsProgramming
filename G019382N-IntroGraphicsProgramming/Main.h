@@ -4,7 +4,9 @@
 #include <gl/GLU.h>
 #include "GL/freeglut.h"
 #include "GLUTCallbacks.h"
+#include "GL2D.h"
 #include <utility>
+
 using namespace std;
 
 class Main
@@ -18,7 +20,5 @@ public:
 	
 	///////
 	void Display();
-	void DrawPolygon();
-	void DrawTriangle(pair<GLfloat,GLfloat> p1, pair<GLfloat, GLfloat> p2, pair<GLfloat, GLfloat > p3 );
 };
 
