@@ -12,15 +12,21 @@ int main(int argc, char* argv[])
 //Construct
 Main::Main(int argc, char* argv[])
 {
-	rotation = 0.0f;
+	rotationX = 0.0f;
+	rotationY = 0.0f;
+	rotationZ = 0.0f;
+	std::fill_n(buffer, 256, false);
 
 	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(800, 800);
 	GLUTCallbacks::Init(this);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glEnable(GL_DEPTH_TEST);
+	glutKeyboardFunc(GLUTCallbacks::KeyboardKeyDown);
+	glutKeyboardUpFunc(GLUTCallbacks::KeyboardKeyUp);
 	glutMainLoop();
 }
 
@@ -32,13 +38,20 @@ Main::~Main(void)
 void Main::Update()
 {
 	glutPostRedisplay();
+	HandleInput();
 
-	rotation += 0.5f;
+	//rotation += 0.5f;
 
-	if (rotation >= 360.0f)
-		rotation = 0.0f;
+	if (rotationX >= 360.0f)
+		rotationX = 0.0f;
 
-	
+	if (rotationY >= 360.0f)
+		rotationY = 0.0f;
+
+	if (rotationZ >= 360.0f)
+		rotationZ = 0.0f;
+
+	//std::cout << "Z: " << rotationZ << endl;
 }
 
 void Main::Display()
@@ -78,11 +91,45 @@ void Main::Display()
 	//gl2d->DrawTriangleRotate(p1, p2, p3, rotation);
 
 	GL3D* gl3d = new GL3D;
-	gl3d->DrawCubeRotate(rotation);
+	gl3d->DrawCubeRotate(rotationX,rotationY,rotationZ);
 
 	glFlush();
+	glutSwapBuffers();
 
 }
+
+void Main::KeyboardDown(unsigned char key, int x, int y)
+{
+	buffer[key] = true;
+}
+
+void Main::KeyboardUp(unsigned char key, int x, int y)
+{
+	buffer[key] = false;
+}
+
+void Main::HandleInput()
+{
+	for (size_t i = 0; i < sizeof(buffer); i++)
+	{
+		if (buffer[(int)'w'] == true)
+			rotationY += .01f;
+		if (buffer[(int)'s'] == true)
+			rotationY += -.01f;
+
+		if (buffer[(int)'d'] == true)
+			rotationX += .01f;
+		if (buffer[(int)'a'] == true)
+			rotationX += -.01f;
+
+		if (buffer[(int)'e'] == true)
+			rotationZ += .01f;
+		if (buffer[(int)'q'] == true)
+			rotationZ += -.01f;
+
+	}
+}
+
 
 
 

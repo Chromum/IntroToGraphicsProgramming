@@ -13,7 +13,7 @@ class GL3D
 {
 public:
 	void DrawCube();
-	void DrawCubeRotate(float rotation);
+	void DrawCubeRotate(float rotationX, float rotationY, float rotationZ);
 
 };
 

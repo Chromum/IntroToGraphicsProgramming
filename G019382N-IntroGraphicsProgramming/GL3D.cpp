@@ -50,15 +50,18 @@ void GL3D::DrawCube()
 
 }
 
-void GL3D::DrawCubeRotate(float rotation)
+void GL3D::DrawCubeRotate(float rotationX, float rotationY, float rotationZ)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	glPushMatrix();
-	glRotatef(rotation, rotation, rotation, -1.0f);
-
+	//glRotatef(.5f, rotationX, rotationY, 0);
+	glRotatef(rotationY, 1.0f, 0, 0);
+	glRotatef(rotationX,0, 1.0f, 0);
+	glRotatef(rotationZ, 0, 0, 1.0f);
+	
 	glBegin(GL_QUADS);
 	{
 		glColor3f(1, 0, 0);
