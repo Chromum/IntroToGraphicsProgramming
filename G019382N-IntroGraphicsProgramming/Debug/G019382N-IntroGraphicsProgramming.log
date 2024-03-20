@@ -1,2 +1,3 @@
-﻿  Main.cpp
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\g019382n.STUDENT.003\source\repos\G019382N-IntroGraphicsProgramming\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  Render3DComponent.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

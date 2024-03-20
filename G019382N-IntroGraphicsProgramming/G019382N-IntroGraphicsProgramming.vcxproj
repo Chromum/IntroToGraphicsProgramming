@@ -127,17 +127,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GL2D.h" />
     <ClInclude Include="GL3D.h" />
+    <ClInclude Include="GLComponent.h" />
+    <ClInclude Include="GLObject.h" />
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="GLUTUtils.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="MathUtils.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Render3DComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GL2D.cpp" />
     <ClCompile Include="GL3D.cpp" />
+    <ClCompile Include="GLComponent.cpp" />
+    <ClCompile Include="GLObject.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Render3DComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,9 +6,13 @@
 #include "GLUTCallbacks.h"
 #include "GL2D.h"
 #include "GL3D.h"
+#include "GLComponent.h";
+#include "GLObject.h";
+#include "Render3DComponent.h"
 #include <utility>
 #include <algorithm>
 #include <iostream>
+#include "EventHandler.h"
 #define REFRESHRATE 16
 
 using namespace std;
@@ -30,7 +34,13 @@ public:
 	void KeyboardDown(unsigned char key, int x, int y);
 	void KeyboardUp(unsigned char key, int x, int y);
 	void HandleInput();
-	//Key Buffer
+	
+	//Event Handlers
+	EventHandler* displayEvent = new EventHandler("Display");
+
+	//TestObject
+	GLObject* object = new GLObject();
+
 private:
 	float rotationX;
 	float rotationY;

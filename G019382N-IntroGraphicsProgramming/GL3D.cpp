@@ -6,7 +6,6 @@ void GL3D::DrawCube()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-
 	glBegin(GL_QUADS);
 	{
 		glColor3f(1, 0, 0);
@@ -45,7 +44,6 @@ void GL3D::DrawCube()
 		glVertex3f(.5f, -.5f, -.5f);
 		glEnd();
 	}
-
 	glFlush();
 
 }

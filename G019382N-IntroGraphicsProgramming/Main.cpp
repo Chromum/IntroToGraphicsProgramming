@@ -16,6 +16,7 @@ Main::Main(int argc, char* argv[])
 	rotationY = 0.0f;
 	rotationZ = 0.0f;
 	std::fill_n(buffer, 256, false);
+	displayEvent = new EventHandler("Display");
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE);
@@ -27,6 +28,46 @@ Main::Main(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glutKeyboardFunc(GLUTCallbacks::KeyboardKeyDown);
 	glutKeyboardUpFunc(GLUTCallbacks::KeyboardKeyUp);
+
+	
+
+	Render3DComponent* renderer = new Render3DComponent(displayEvent);
+	Mesh mesh = Mesh();
+	mesh.AddVert(.5f, .5f, -.5f);
+	mesh.AddVert(-.5f, .5f, -.5f);
+	mesh.AddVert(-.5f, .5f, .5f);
+	mesh.AddVert(.5f, .5f, .5f);
+
+	mesh.AddVert(.5f, -.5f, .5f);
+	mesh.AddVert(-.5f, -.5f, .5f);
+	mesh.AddVert(-.5f, -.5f, -.5f);
+	mesh.AddVert(.5f, -.5f, -.5f);
+
+	mesh.AddVert(.5f, .5f, .5f);
+	mesh.AddVert(-.5f, .5f, .5f);
+	mesh.AddVert(-.5f, -.5f, .5f);
+	mesh.AddVert(.5f, -.5f, .5f);
+
+	mesh.AddVert(.5f, -.5f, -.5f);
+	mesh.AddVert(-.5f, -.5f, -.5f);
+	mesh.AddVert(-.5f, .5f, -.5f);
+	mesh.AddVert(.5f, .5f, -.5f);
+
+	mesh.AddVert(-.5f, .5f, .5f);
+	mesh.AddVert(-.5f, .5f, -.5f);
+	mesh.AddVert(-.5f, -.5f, -.5f);
+	mesh.AddVert(-.5f, -.5f, .5f);
+
+	mesh.AddVert(.5f, .5f, -.5f);
+	mesh.AddVert(.5f, .5f, .5f);
+	mesh.AddVert(.5f, -.5f, .5f);
+	mesh.AddVert(.5f, -.5f, -.5f);
+
+	renderer->objectMesh = mesh;
+	GLComponent* comp = renderer;
+	comp->objectParent = object;
+	object->AddComponent(comp);
+
 	glutMainLoop();
 }
 
@@ -51,47 +92,22 @@ void Main::Update()
 	if (rotationZ >= 360.0f)
 		rotationZ = 0.0f;
 
+	object->Transform.Rotation.x = rotationX;
+	object->Transform.Rotation.y = rotationY;
+	object->Transform.Rotation.z = rotationZ;
+
+
 	//std::cout << "Z: " << rotationZ << endl;
 }
 
 void Main::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	//pair<GLfloat,GLfloat> p1;
-	//pair<GLfloat, GLfloat> p2;
-	//pair<GLfloat, GLfloat> p3;
-	////p1
-	//p1.first = 1.0;
-	//p1.second = 1.0;
-	////p2
-	//p2.first = 1.0f;
-	//p2.second = -1.0f;
-	////p3
-	//p3.first = -1.0f;
-	//p3.second = -1.0f;
 
-	//GL2D* gl2d = new GL2D;
-	//GlutColor color = GlutColor();
+	//GL3D* gl3d = new GL3D;
+	//gl3d->DrawCubeRotate(rotationX,rotationY,rotationZ);
 
-	//color.r = 255;
-	//color.g = 255;
-
-	//gl2d->DrawTriangleRotate(p1,p2,p3,rotation);
-
-	////p1
-	//p1.first = -0.30;
-	//p1.second = -1.0;
-	////p2
-	//p2.first = -1.0f;
-	//p2.second = 1.0f;
-	////p3
-	//p3.first = 1.0f;
-	//p3.second = 1.0f;
-
-	//gl2d->DrawTriangleRotate(p1, p2, p3, rotation);
-
-	GL3D* gl3d = new GL3D;
-	gl3d->DrawCubeRotate(rotationX,rotationY,rotationZ);
+	displayEvent->FireEvent();
 
 	glFlush();
 	glutSwapBuffers();
@@ -126,6 +142,21 @@ void Main::HandleInput()
 			rotationZ += .01f;
 		if (buffer[(int)'q'] == true)
 			rotationZ += -.01f;
+
+		if (buffer[(int)'0'] == true)
+			object->Transform.Position.x += 0.0001f;
+		if (buffer[(int)'1'] == true)
+			object->Transform.Position.x -= 0.0001f;
+
+		if (buffer[(int)'2'] == true)
+			object->Transform.Position.y += 0.0001f;
+		if (buffer[(int)'9'] == true)
+			object->Transform.Position.y -= 0.0001f;
+
+		if (buffer[(int)'3'] == true)
+			object->Transform.Position.z += 0.0001f;
+		if (buffer[(int)'8'] == true)
+			object->Transform.Position.z -= 0.0001f;
 
 	}
 }
