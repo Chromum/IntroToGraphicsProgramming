@@ -1,0 +1,23 @@
+﻿  EventHandler.cpp
+  GL2D.cpp
+  GL3D.cpp
+  GLComponent.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  GLObject.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  GLUTCallbacks.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(10,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Main.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(10,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Mesh.cpp
+  Render3DComponent.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 304 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Release\G019382N-IntroGraphicsProgramming.exe
