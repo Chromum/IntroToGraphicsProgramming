@@ -1,5 +1,5 @@
 #pragma once
-#include "GLComponent.h"
+#include "Renderer3D.h"
 #include <vector>
 #include "MathUtils.h"
 
@@ -9,14 +9,9 @@ class GLObject
 {
 public:
 	GLObject();
-	struct
-	{
-		Vector3 Position;
-		Quaternion Rotation;
-		Vector3 Scale;
-	}Transform;
-	void AddComponent(GLComponent* component);
-	vector<GLComponent*> objectComponents;
+	Transform Transform;
+	Renderer3D* render3D;
+
 };
 
 

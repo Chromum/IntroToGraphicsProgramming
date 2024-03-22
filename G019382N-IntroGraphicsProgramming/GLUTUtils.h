@@ -6,10 +6,16 @@
 struct GlutColor {
 public:
 	GlutColor() {
-		r = 0.0f;
-		g = 0.0f;
-		b = 0.0f;
-		a = 0.0f;
+		r = 1.0f;
+		g = 1.0f;
+		b = 1.0f;
+		a = 1.0f;
+	};
+	GlutColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) {
+		this->r = r;
+		this->g = g;
+		this->b = b;
+		this->a = a;
 	};
 	GLfloat r,g,b,a;
 };

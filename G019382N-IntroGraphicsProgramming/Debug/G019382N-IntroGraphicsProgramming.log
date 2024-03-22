@@ -1,3 +1,13 @@
-﻿  Render3DComponent.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  GLObject.cpp
+  GLUTCallbacks.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(71,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(72,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Main.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(181,45): warning C4305: 'argument': truncation from 'double' to 'float'
+  MathUtils.cpp
+  Mesh.cpp
+  Renderer3D.cpp
+  Generating Code...
   G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

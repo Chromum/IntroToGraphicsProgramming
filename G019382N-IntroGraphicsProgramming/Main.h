@@ -6,14 +6,13 @@
 #include "GLUTCallbacks.h"
 #include "GL2D.h"
 #include "GL3D.h"
-#include "GLComponent.h";
 #include "GLObject.h";
-#include "Render3DComponent.h"
+#include "Renderer3D.h"
 #include <utility>
 #include <algorithm>
 #include <iostream>
 #include "EventHandler.h"
-#define REFRESHRATE 16
+#include <vector>
 
 using namespace std;
 
@@ -34,17 +33,32 @@ public:
 	void KeyboardDown(unsigned char key, int x, int y);
 	void KeyboardUp(unsigned char key, int x, int y);
 	void HandleInput();
+	void ReBuildProjectionMatrix();
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");
 
 	//TestObject
-	GLObject* object = new GLObject();
+	vector<GLObject*> objects;
 
+	//Input
+	Vector2 mouseDelta = Vector2(0,0);
+	bool leftMouse;
+	bool rightMouse;
+	bool middleMouse;
+
+	//Screen
+	int screenWidth;
+	int screenHeight;
+
+	//Camera
+	
 private:
 	float rotationX;
 	float rotationY;
 	float rotationZ;
 	bool buffer[256];
+
+
 };
 

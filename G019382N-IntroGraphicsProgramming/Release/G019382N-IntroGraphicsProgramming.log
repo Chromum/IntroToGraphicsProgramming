@@ -1,23 +1,13 @@
-﻿  EventHandler.cpp
-  GL2D.cpp
-  GL3D.cpp
-  GLComponent.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  GLObject.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  GLUTCallbacks.cpp
+﻿  Main.cpp
 C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(10,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Main.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(10,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Mesh.cpp
-  Render3DComponent.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLComponent.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 304 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Release\G019382N-IntroGraphicsProgramming.exe
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(45,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(66,14): error C2374: 'renderer': redefinition; multiple initialization
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(57): message : see declaration of 'renderer'
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(67,7): error C2374: 'mesh': redefinition; multiple initialization
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(58): message : see declaration of 'mesh'
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(150,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(152,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(155,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(157,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(160,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(162,3): error C2065: 'object': undeclared identifier

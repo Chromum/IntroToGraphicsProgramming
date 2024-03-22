@@ -51,7 +51,7 @@ void GL3D::DrawCube()
 void GL3D::DrawCubeRotate(float rotationX, float rotationY, float rotationZ)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(DMPAPER_FANFOLD_LGL_GERMAN);
 	glLoadIdentity();
 
 	glPushMatrix();
