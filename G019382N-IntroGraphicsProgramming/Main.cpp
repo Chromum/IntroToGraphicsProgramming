@@ -48,7 +48,8 @@ Main::Main(int argc, char* argv[])
 
 	ModelLoader ml = ModelLoader();
 
-	Mesh* mesh = ml.LoadMeshAtPath("Models/cube.obj");
+	Mesh* mesh = ml.LoadMeshAtPath("Models/b59c937523ce40e9a3e35c8c83ea1160.obj");
+	std::cout << "gfdg";
 	GLObject* obj2 = new GLObject();
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);

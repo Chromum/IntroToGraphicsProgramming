@@ -70,11 +70,14 @@ Vector3* ModelLoader::LoadLine(std::string line, int startPoint)
 
     for (int i = startPoint; i < line.size(); i++)
     {
-        if (line[i] == ' ')
+        if (line[i] == ' ' || i == line.size() -1)
         {
+            //if (stringOfFloat.size() == 0)
+            //    return toReturn;
 
             if (stringOfFloat.size() == 0)
-                return toReturn;
+                continue;
+
 
             switch (position)
             {
@@ -94,23 +97,30 @@ Vector3* ModelLoader::LoadLine(std::string line, int startPoint)
             position++;
             stringOfFloat.clear();
         }
-        switch (position)
-        {
-        case 0:
-            stringOfFloat.push_back(line[i]);
-            break;
-        case 1:
-            stringOfFloat.push_back(line[i]);
-            break;
-        case 2:
-            stringOfFloat.push_back(line[i]);
-            break;
-        default:
-            break;
-        }
+        //if (line[i] == '\0')
+        //{
+        //    //if (stringOfFloat.size() == 0)
+        //    //    return toReturn;
 
-        continue;
+        //    switch (position)
+        //    {
+        //    case 0:
+        //        toReturn->x = std::stof(stringOfFloat);
+        //        break;
+        //    case 1:
+        //        toReturn->y = std::stof(stringOfFloat);
+        //        break;
+        //    case 2:
+        //        toReturn->z = std::stof(stringOfFloat);
+        //        break;
+        //    default:
+        //        break;
+        //    }
 
+        //    position++;
+        //    stringOfFloat.clear();
+        //}
+        stringOfFloat.push_back(line[i]);
     }
 
 
@@ -122,6 +132,8 @@ void ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
     std::string string;
     for (int i = startPoint; i < line.size(); i++)
     {
+        
+
         if (line[i] == '/')
         {
             vector->push_back(std::stoi(string));

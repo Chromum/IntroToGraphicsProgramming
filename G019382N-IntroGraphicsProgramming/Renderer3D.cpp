@@ -33,7 +33,6 @@ void Renderer3D::RenderUpdate()
 
 		for (int i = 0; i < objectMesh->indicies.size(); i++)
 		{
-			std::cout << i;
 			Vector3* vertex = objectMesh->verts[objectMesh->indicies[i] - 1];
 
 			glVertex3f(vertex->x, vertex->y, vertex->z);
