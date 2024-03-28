@@ -8,8 +8,10 @@ class Mesh
 {
 public:
 	Mesh();
+	~Mesh();
 	Mesh(Primatives type);
-	std::vector<Vector3> verts;
-	void AddVert(float x,float y,float z);
+	std::vector<Vector3*> verts;
+	std::vector<unsigned int> indicies;
+	void AddVert(Vector3* v3);
 };
 

@@ -1,44 +1,51 @@
 #include "Mesh.h"
 
-void Mesh::AddVert(float x, float y, float z)
+void Mesh::AddVert(Vector3* v3)
 {
-	Vector3 toAdd = Vector3(x, y, z);
-	verts.push_back(toAdd);
+	verts.push_back(v3);
 }
 
 Mesh::Mesh() {
 
 }
 
+Mesh::~Mesh()
+{
+	for (int i = 0; i < verts.size(); i++)
+	{
+		delete verts[i];
+	}
+}
+
 Mesh::Mesh(Primatives type) 
 {
-	AddVert(.5f, .5f, -.5f);
-	AddVert(-.5f, .5f, -.5f);
-	AddVert(-.5f, .5f, .5f);
-	AddVert(.5f, .5f, .5f);
+	//AddVert(.5f, .5f, -.5f);
+	//AddVert(-.5f, .5f, -.5f);
+	//AddVert(-.5f, .5f, .5f);
+	//AddVert(.5f, .5f, .5f);
 
-	AddVert(.5f, -.5f, .5f);
-	AddVert(-.5f, -.5f, .5f);
-	AddVert(-.5f, -.5f, -.5f);
-	AddVert(.5f, -.5f, -.5f);
+	//AddVert(.5f, -.5f, .5f);
+	//AddVert(-.5f, -.5f, .5f);
+	//AddVert(-.5f, -.5f, -.5f);
+	//AddVert(.5f, -.5f, -.5f);
 
-	AddVert(.5f, .5f, .5f);
-	AddVert(-.5f, .5f, .5f);
-	AddVert(-.5f, -.5f, .5f);
-	AddVert(.5f, -.5f, .5f);
+	//AddVert(.5f, .5f, .5f);
+	//AddVert(-.5f, .5f, .5f);
+	//AddVert(-.5f, -.5f, .5f);
+	//AddVert(.5f, -.5f, .5f);
 
-	AddVert(.5f, -.5f, -.5f);
-	AddVert(-.5f, -.5f, -.5f);
-	AddVert(-.5f, .5f, -.5f);
-	AddVert(.5f, .5f, -.5f);
+	//AddVert(.5f, -.5f, -.5f);
+	//AddVert(-.5f, -.5f, -.5f);
+	//AddVert(-.5f, .5f, -.5f);
+	//AddVert(.5f, .5f, -.5f);
 
-	AddVert(-.5f, .5f, .5f);
-	AddVert(-.5f, .5f, -.5f);
-	AddVert(-.5f, -.5f, -.5f);
-	AddVert(-.5f, -.5f, .5f);
+	//AddVert(-.5f, .5f, .5f);
+	//AddVert(-.5f, .5f, -.5f);
+	//AddVert(-.5f, -.5f, -.5f);
+	//AddVert(-.5f, -.5f, .5f);
 
-	AddVert(.5f, .5f, -.5f);
-	AddVert(.5f, .5f, .5f);
-	AddVert(.5f, -.5f, .5f);
-	AddVert(.5f, -.5f, -.5f);
+	//AddVert(.5f, .5f, -.5f);
+	//AddVert(.5f, .5f, .5f);
+	//AddVert(.5f, -.5f, .5f);
+	//AddVert(.5f, -.5f, -.5f);
 }

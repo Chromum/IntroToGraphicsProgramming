@@ -24,15 +24,19 @@ void Renderer3D::RenderUpdate()
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
 
-	glBegin(GL_QUADS);
+
+	for (int i = 0; i < objectMesh->indicies.size(); i++)
+	glBegin(GL_TRIANGLES);
 	{
 		glColor3f(color.r,color.g,color.b);
 
 
-		int l = objectMesh.verts.size();
-		for (int i = 0; i < l; i++)
+		for (int i = 0; i < objectMesh->indicies.size(); i++)
 		{
-			glVertex3f((GLfloat(objectMesh.verts[i].x)), (GLfloat(objectMesh.verts[i].y)), (GLfloat(objectMesh.verts[i].z)));
+			std::cout << i;
+			Vector3* vertex = objectMesh->verts[objectMesh->indicies[i] - 1];
+
+			glVertex3f(vertex->x, vertex->y, vertex->z);
 		}
 
 		glEnd();

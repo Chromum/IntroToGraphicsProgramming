@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Constants.h"
 #include "GLUTUtils.h"
+#include "ModelLoader.h"
 
 Transform cameraTransform;
 
@@ -45,21 +46,15 @@ Main::Main(int argc, char* argv[])
 
 	ReBuildProjectionMatrix();
 
-	GLObject* obj1 = new GLObject();
-	objects.push_back(obj1);
-	Renderer3D* renderer = new Renderer3D(displayEvent, obj1);
-	Mesh mesh = Mesh(Cube);
-	renderer->objectMesh = mesh;
-	obj1->render3D = renderer;
-	obj1->Transform.Position.z = -5;
-	obj1->Transform.Position.x = -1;
+	ModelLoader ml = ModelLoader();
 
+	Mesh* mesh = ml.LoadMeshAtPath("Models/cube.obj");
 	GLObject* obj2 = new GLObject();
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
 	renderer2->objectMesh = mesh;
 	renderer2->color = GlutColor(1.f,.25f,0.1f,.0f);
-	obj2->render3D = renderer;
+	obj2->render3D = renderer2;
 	obj2->Transform.Position.z = -5;
 	obj2->Transform.Position.x = 1;
 	

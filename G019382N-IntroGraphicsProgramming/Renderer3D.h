@@ -17,7 +17,7 @@ class Renderer3D
 public:
 	Renderer3D(GLObject* object);
 	GLObject* object;
-	Mesh objectMesh;
+	Mesh* objectMesh;
 	GlutColor color;
 	Renderer3D(EventHandler* handler, GLObject* object);
 	void RenderUpdate();
