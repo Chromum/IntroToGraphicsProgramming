@@ -11,7 +11,7 @@ public:
 	~Mesh();
 	Mesh(Primatives type);
 	std::vector<Vector3*> verts;
-	std::vector<unsigned int> indicies;
+	std::vector<unsigned int> indicies = std::vector<unsigned int>();
 	void AddVert(Vector3* v3);
 };
 

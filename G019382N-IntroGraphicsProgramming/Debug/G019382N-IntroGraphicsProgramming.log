@@ -1,4 +1,3 @@
 ﻿  ModelLoader.cpp
-C:\Users\g019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(71,32): warning C4018: '<': signed/unsigned mismatch
-C:\Users\g019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(133,32): warning C4018: '<': signed/unsigned mismatch
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\g019382n\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(112,23): warning C4018: '<': signed/unsigned mismatch
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
