@@ -2,6 +2,8 @@
 #include "Constants.h"
 #include "GLUTUtils.h"
 #include "ModelLoader.h"
+#include "ImageReader.h"
+#include "Image.h"
 
 Transform cameraTransform;
 
@@ -23,14 +25,14 @@ Main::Main(int argc, char* argv[])
 	rotationZ = 0.0f;
 	std::fill_n(buffer, 256, false);
 	displayEvent = new EventHandler("Display");
-
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE);
-
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 	screenWidth = glutGet(GLUT_SCREEN_WIDTH);
 	screenHeight = glutGet(GLUT_SCREEN_HEIGHT);
 
 	glutInitWindowSize(screenWidth, screenHeight);
+	glutInitContextVersion(3, 1);
+	//glutInitContextProfile(GLUT_CORE_PROFILE);
 	GLUTCallbacks::Init(this);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -42,22 +44,27 @@ Main::Main(int argc, char* argv[])
 	glutPassiveMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
 	//glutFullScreen();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	ReBuildProjectionMatrix();
 
 	ModelLoader ml = ModelLoader();
 
-	Mesh* mesh = ml.LoadMeshAtPath("Models/b59c937523ce40e9a3e35c8c83ea1160.obj");
+	Mesh* mesh = ml.LoadMeshAtPath("Models/CubeTest.obj");
 	std::cout << "gfdg";
 	GLObject* obj2 = new GLObject();
+	obj2->Transform.Scale.x = 0.1f;
+	obj2->Transform.Scale.y = 0.1f;
+	obj2->Transform.Scale.z = 0.1f;
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
+	Image* texture = ImageReader::ReadImage("Models/Cube.bmp");
+	renderer2->SetTexture(texture);
 	renderer2->objectMesh = mesh;
-	renderer2->color = GlutColor(1.f,.25f,0.1f,.0f);
+	renderer2->color = GlutColor(0, 128, 128,1);
 	obj2->render3D = renderer2;
-	obj2->Transform.Position.z = -5;
-	obj2->Transform.Position.x = 1;
+	obj2->Transform.Position.z = -6;
+	obj2->Transform.Position.y = -1;
 	
 
 	glutMainLoop();
@@ -70,21 +77,23 @@ Main::~Main(void)
 
 void Main::Update()
 {
+
+
 	glutPostRedisplay();
 	HandleInput();
 	ReBuildProjectionMatrix();
 
-	rotationX += .1f;
+	rotationX += .5f;
 	if (rotationX >= 360.0f)
 		rotationX = 0.0f;
 
-	rotationY += .1f;
-	if (rotationY >= 360.0f)
-		rotationY = 0.0f;
+	//rotationY += .1f;
+	//if (rotationY >= 360.0f)
+	//	rotationY = 0.0f;
 
-	rotationZ += .1f;
-	if (rotationZ >= 360.0f)
-		rotationZ = 0.0f;
+	//rotationZ += .1f;
+	//if (rotationZ >= 360.0f)
+	//	rotationZ = 0.0f;
 
 
 	for (size_t i = 0; i < objects.size(); i++)
@@ -104,7 +113,7 @@ void Main::Display()
 	//gl3d->DrawCubeRotate(rotationX,rotationY,rotationZ);
 
 	displayEvent->FireEvent();
-
+	//glActiveTexture()
 	glFlush();
 	glutSwapBuffers();
 

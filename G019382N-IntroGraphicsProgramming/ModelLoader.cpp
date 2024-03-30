@@ -30,6 +30,7 @@ Mesh* ModelLoader::LoadMeshAtPath(std::string path)
             case 'n':
                 break;
             case 't':
+                mesh->AddTextureUV(LoadLineV2(fileContents, 2));
                 break;
             case ' ':
                 mesh->AddVert(LoadLine(fileContents, 2));
@@ -39,7 +40,7 @@ Mesh* ModelLoader::LoadMeshAtPath(std::string path)
             }
             break;
         case 'f':
-            LoadLineInt(fileContents, 2, &mesh->indicies);
+            mesh->isQuadMesh = LoadLineInt(fileContents, 2, &mesh->indicies);
             break;
         case 's':
             std::cout << "Skipping line " << lineCount << " was a shading mode!" << std::endl;
@@ -92,8 +93,34 @@ Vector3* ModelLoader::LoadLine(std::string line, int startPoint)
     return toReturn;
 }
 
-void ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsigned int>* vector)
+Vector2* ModelLoader::LoadLineV2(std::string line, int startPoint)
+{
+    Vector2* toReturn = new Vector2();
+    size_t firstSpaceIndex = line.find(' ');
+    line = line.substr(firstSpaceIndex + 1);
+
+    std::vector<std::string> stringVector;
+    std::istringstream stream(line);
+    std::string token;
+
+    while (getline(stream, token, ' '))
+    {
+        stringVector.push_back(token);
+    }
+
+    if (stringVector[0] == "")
+        stringVector.erase(stringVector.begin());
+
+    toReturn->x = std::stof(stringVector[0]);
+    toReturn->y = std::stof(stringVector[1]);
+
+    return toReturn;
+}
+
+
+bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsigned int>* vector)
 {   
+    bool isQuadMode = false;
     std::string string = line;
 
     size_t firstSpaceIndex = string.find(' ');
@@ -111,6 +138,11 @@ void ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
     std::vector<Vector3> VectorVector;
     for (int i = 0; i < stringVector.size(); i++)
     {
+        if (stringVector.size() == 4)
+        {
+            isQuadMode = true;
+        }
+
         std::istringstream stream2(stringVector[i]);
         std::string token2;
 
@@ -142,4 +174,5 @@ void ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
     //    vector->push_back(VectorVector[j].x);
     //}
     std::cout << "";
+    return isQuadMode;
 }

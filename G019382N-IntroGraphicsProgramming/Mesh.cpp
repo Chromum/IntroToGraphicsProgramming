@@ -5,6 +5,11 @@ void Mesh::AddVert(Vector3* v3)
 	verts.push_back(v3);
 }
 
+void Mesh::AddTextureUV(Vector2* v2)
+{
+	textureUVs.push_back(v2);
+}
+
 Mesh::Mesh() {
 
 }

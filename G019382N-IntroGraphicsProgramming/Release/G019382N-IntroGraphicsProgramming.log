@@ -1,13 +1,9 @@
 ﻿  Main.cpp
 C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(45,43): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(66,14): error C2374: 'renderer': redefinition; multiple initialization
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(57): message : see declaration of 'renderer'
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(67,7): error C2374: 'mesh': redefinition; multiple initialization
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(58): message : see declaration of 'mesh'
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(150,3): error C2065: 'object': undeclared identifier
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(152,3): error C2065: 'object': undeclared identifier
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(155,3): error C2065: 'object': undeclared identifier
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(157,3): error C2065: 'object': undeclared identifier
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(160,3): error C2065: 'object': undeclared identifier
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(162,3): error C2065: 'object': undeclared identifier
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(186,45): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating code
+  0 of 696 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Release\G019382N-IntroGraphicsProgramming.exe

@@ -1,0 +1,56 @@
+# Blender 4.1.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Escamas
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/Death_Wing_005_Escamas_BaseColor.png
+map_Ns C:/Death_Wing_005_Escamas_Roughness.png
+map_Bump -bm 1.000000 C:/Death_Wing_005_Escamas_Normal.png
+
+newmtl Horns
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/Death_Wing_005_Horns_BaseColor.png
+map_Ns C:/Death_Wing_005_Horns_Roughness.png
+map_Bump -bm 1.000000 C:/Baked_horn_normals.psd
+
+newmtl Main_Body
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/Death_Wing_005_Main_Body_BaseColor.png
+map_Ns C:/Death_Wing_005_Main_Body_Roughness.png
+map_Bump -bm 1.000000 C:/Baked_normals_Body.png
+
+newmtl Teeth
+Ns 2.029698
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/Death_Wing_005_Teeth_BaseColor.png
+
+newmtl Wings
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd C:/Death_Wing_005_Wings_BaseColor.png
+map_Ns C:/Death_Wing_005_Wings_Roughness.png
+map_Bump -bm 1.000000 C:/Death_Wing_005_Wings_Normal.png
