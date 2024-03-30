@@ -51,17 +51,17 @@ Main::Main(int argc, char* argv[])
 	ModelLoader ml = ModelLoader();
 	ImageReader image = ImageReader();
 
-	Mesh* mesh = ml.LoadMeshAtPath("Models/CubeTest.obj");
-	std::cout << "gfdg";
+	//Mesh* mesh = ml.LoadMeshAtPath("Models/ShittyQuadTest.obj");
+	//std::cout << "gfdg";
 	GLObject* obj2 = new GLObject();
 	obj2->Transform.Scale.x = 0.1f;
 	obj2->Transform.Scale.y = 0.1f;
-	obj2->Transform.Scale.z = 0.1f;
+	obj2->Transform.Scale.z = 0.1;
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-	GLuint i = image.ReadImage("Models/Cube.png");
+	GLuint i = image.ReadImage("Models/ShittyQuadTestBaseMap.png");
 	renderer2->SetTexture(i);
-	renderer2->objectMesh = mesh;
+	renderer2->objectMeshes = ml.LoadMeshAtPath("Models/ShittyQuadTest2OBJ.obj");
 	renderer2->color = GlutColor(0, 128, 128,1);
 	obj2->render3D = renderer2;
 	obj2->Transform.Position.z = -6;

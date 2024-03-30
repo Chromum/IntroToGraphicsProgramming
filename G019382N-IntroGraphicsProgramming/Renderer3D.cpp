@@ -33,16 +33,23 @@ void Renderer3D::RenderUpdate()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-	if(objectMesh->isQuadMesh)
-		glBegin(GL_QUADS);
-	else
-		glBegin(GL_TRIANGLES); 
+	int previousLastIndicie = 0;
+	int previousLastIndicieUV = 0;
+	for (int j = 0; j < objectMeshes.size(); j++)
 	{
-
-		for (int i = 0; i < objectMesh->indicies.size(); i++)
+		if (objectMeshes[j]->verts.size() == 0)
+			return;
+		if (objectMeshes[j]->isQuadMesh)
+			glBegin(GL_QUADS);
+		else
+			glBegin(GL_TRIANGLES);
+		for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
 		{
-			Vector3* vertex = objectMesh->verts[objectMesh->indicies[i] - 1];
-			Vector2* UV = objectMesh->textureUVs[objectMesh->UVindicies[i] - 1];
+			int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastIndicie;
+			int UVVertexIndicie = objectMeshes[j]->UVindicies[i] -1- previousLastIndicieUV;
+
+			Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
+			Vector2* UV = objectMeshes[j]->textureUVs[UVVertexIndicie];
 
 			glTexCoord2f(UV->x, UV->y);
 			//glColor3f(vertex->x, vertex->y, vertex->z);
@@ -51,7 +58,10 @@ void Renderer3D::RenderUpdate()
 
 		glDisable(GL_TEXTURE_2D);
 		glEnd();
+		previousLastIndicie = objectMeshes[j]->indicies[objectMeshes[j]->indicies.size() - 1];
+		previousLastIndicieUV = objectMeshes[j]->UVindicies[objectMeshes[j]->UVindicies.size() - 1];
 	}
+	
 }
 
 void Renderer3D::SetTexture(GLuint image)

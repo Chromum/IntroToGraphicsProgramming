@@ -19,7 +19,7 @@ public:
 	Renderer3D(GLObject* object);
 	GLObject* object;
 	GLuint texture;
-	Mesh* objectMesh;
+	std::vector<Mesh*> objectMeshes;
 	GlutColor color;
 	Renderer3D(EventHandler* handler, GLObject* object);
 	void RenderUpdate();

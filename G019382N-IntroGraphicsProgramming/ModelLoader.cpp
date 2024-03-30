@@ -5,18 +5,19 @@
 #include "MathUtils.h"
 #include <chrono>
 
-Mesh* ModelLoader::LoadMeshAtPath(std::string path)
+std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
 {
     auto startTime = std::chrono::high_resolution_clock::now();
-    Mesh* mesh = new Mesh();
+    std::vector<Mesh*> meshes;
     std::string fileContents;
     std::ifstream File;
     File.open(path);
 
     if (!File.is_open())
-        return nullptr;
+        return meshes;
 
     int lineCount = 0;
+    Mesh* currentMesh = nullptr;
     while (getline(File, fileContents))
     {
         switch (fileContents[0])
@@ -30,22 +31,33 @@ Mesh* ModelLoader::LoadMeshAtPath(std::string path)
             case 'n':
                 break;
             case 't':
-                mesh->AddTextureUV(LoadLineV2(fileContents, 2));
+                currentMesh->AddTextureUV(LoadLineV2(fileContents, 2));
                 break;
             case ' ':
-                mesh->AddVert(LoadLine(fileContents, 2));
+                currentMesh->AddVert(LoadLine(fileContents, 2));
                 break;
             default:
                 break;
             }
             break;
         case 'f':
-            mesh->isQuadMesh = LoadLineInt(fileContents, 2, &mesh->indicies, &mesh->UVindicies);
+            currentMesh->isQuadMesh = LoadLineInt(fileContents, 2, &currentMesh->indicies, &currentMesh->UVindicies);
             break;
         case 's':
             std::cout << "Skipping line " << lineCount << " was a shading mode!" << std::endl;
             break;
         case 'o':
+            if (currentMesh == nullptr)
+            {
+                currentMesh = new Mesh();
+                break;
+            }
+            meshes.push_back(currentMesh);
+            currentMesh = new Mesh();
+            break;
+        case 'g':
+            meshes.push_back(currentMesh);
+            currentMesh = new Mesh();
             break;
         case 'm':
             std::cout << "Skipping line " << lineCount << " was a material thingy!" << std::endl;
@@ -61,11 +73,13 @@ Mesh* ModelLoader::LoadMeshAtPath(std::string path)
         lineCount++;
     }
 
+    meshes.push_back(currentMesh);
+
     auto endTime = std::chrono::high_resolution_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
 
     std::cout << "Execution time: " << elapsedTime << " milliseconds" << std::endl;
-    return mesh;
+    return meshes;
 }
 
 Vector3* ModelLoader::LoadLine(std::string line, int startPoint)
