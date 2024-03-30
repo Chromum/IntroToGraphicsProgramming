@@ -141,6 +141,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Renderer3D.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventHandler.cpp" />

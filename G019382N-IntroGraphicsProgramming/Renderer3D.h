@@ -18,11 +18,11 @@ class Renderer3D
 public:
 	Renderer3D(GLObject* object);
 	GLObject* object;
-	Image texture;
+	GLuint texture;
 	Mesh* objectMesh;
 	GlutColor color;
 	Renderer3D(EventHandler* handler, GLObject* object);
 	void RenderUpdate();
-	void SetTexture(Image* image);
+	void SetTexture(GLuint image);
 };
 

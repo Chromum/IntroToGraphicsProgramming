@@ -49,8 +49,9 @@ Main::Main(int argc, char* argv[])
 	ReBuildProjectionMatrix();
 
 	ModelLoader ml = ModelLoader();
+	ImageReader image = ImageReader();
 
-	Mesh* mesh = ml.LoadMeshAtPath("Models/CubeTest.obj");
+	Mesh* mesh = ml.LoadMeshAtPath("Models/sh_coralineY339.obj");
 	std::cout << "gfdg";
 	GLObject* obj2 = new GLObject();
 	obj2->Transform.Scale.x = 0.1f;
@@ -58,8 +59,8 @@ Main::Main(int argc, char* argv[])
 	obj2->Transform.Scale.z = 0.1f;
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-	Image* texture = ImageReader::ReadImage("Models/Cube.bmp");
-	renderer2->SetTexture(texture);
+	GLuint i = image.ReadImage("Models/sh_coralineY339_albedo.jpeg");
+	renderer2->SetTexture(i);
 	renderer2->objectMesh = mesh;
 	renderer2->color = GlutColor(0, 128, 128,1);
 	obj2->render3D = renderer2;
@@ -115,6 +116,49 @@ void Main::Display()
 	displayEvent->FireEvent();
 	//glActiveTexture()
 	glFlush();
+
+
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//// Set up modelview and projection matrices (e.g., using gluLookAt and gluPerspective)
+
+	//// Bind the texture
+	//glEnable(GL_TEXTURE_2D);
+	//glBindTexture(GL_TEXTURE_2D, objects[0]->render3D->texture);
+
+	//// Draw your 3D model (e.g., using glBegin/glEnd or vertex arrays)
+	//glBegin(GL_TRIANGLES);
+	//glTexCoord2f(0, 0);
+	////glColor3f(0, 0, 0);
+	//glVertex3f(0,0, 0);
+
+
+	//glTexCoord2f(1, 1);
+	////glColor3f(1, 1, 0);
+	//glVertex3f(1, 1, 0);
+
+	//glTexCoord2f(1, 0);
+	////glColor3f(1, 0, 0);
+	//glVertex3f(1, 0, 0);
+
+
+	//glTexCoord2f(0, 0);
+	////glColor3f(0, 0, 0);
+	//glVertex3f(0, 0, 0);
+
+	//glTexCoord2f(0, 1);
+	////glColor3f(0, 1, 0);
+	//glVertex3f(0, 1, 0);
+
+	//glTexCoord2f(1, 1);
+	////glColor3f(1, 1, 0);
+	//glVertex3f(1, 1, 0);
+
+
+	//glDisable(GL_TEXTURE_2D);
+	//glEnd();
+
+	 //Swapbuffers (if using double buffering)
 	glutSwapBuffers();
 
 }

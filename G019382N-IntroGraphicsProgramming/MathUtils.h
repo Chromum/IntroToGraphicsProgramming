@@ -23,7 +23,7 @@ struct Vector2
 struct Vector3 
 {
 	float x, y, z;
-	Vector3() { this->x = 0; this->y = 0; this->z; };
+	Vector3() { this->x = 1; this->y = 1; this->z = 1; };
 	Vector3(float x, float y, float z)
 	{
 		this->x = x;

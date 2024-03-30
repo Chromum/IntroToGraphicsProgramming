@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
+#include "GL/glut.h"
 
 struct Image;
 
 class ImageReader
 {
 public:
-	static Image* ReadImage(std::string path);
+	GLuint ReadImage(std::string path);
 };
 
