@@ -51,7 +51,7 @@ Main::Main(int argc, char* argv[])
 	ModelLoader ml = ModelLoader();
 	ImageReader image = ImageReader();
 
-	Mesh* mesh = ml.LoadMeshAtPath("Models/sh_coralineY339.obj");
+	Mesh* mesh = ml.LoadMeshAtPath("Models/CubeTest.obj");
 	std::cout << "gfdg";
 	GLObject* obj2 = new GLObject();
 	obj2->Transform.Scale.x = 0.1f;
@@ -59,7 +59,7 @@ Main::Main(int argc, char* argv[])
 	obj2->Transform.Scale.z = 0.1f;
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-	GLuint i = image.ReadImage("Models/sh_coralineY339_albedo.jpeg");
+	GLuint i = image.ReadImage("Models/Cube.png");
 	renderer2->SetTexture(i);
 	renderer2->objectMesh = mesh;
 	renderer2->color = GlutColor(0, 128, 128,1);
