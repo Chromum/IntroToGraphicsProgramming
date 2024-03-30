@@ -26,6 +26,10 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             std::cout << "Skipping line " << lineCount << " was a comment!" << std::endl;
             break;
         case 'v':
+            if (currentMesh == nullptr)
+            {
+                currentMesh = new Mesh();
+            }
             switch(fileContents[1])
             {
             case 'n':
@@ -41,6 +45,10 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             }
             break;
         case 'f':
+            if (currentMesh == nullptr)
+            {
+                currentMesh = new Mesh();
+            }
             currentMesh->isQuadMesh = LoadLineInt(fileContents, 2, &currentMesh->indicies, &currentMesh->UVindicies);
             break;
         case 's':
@@ -56,6 +64,11 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             currentMesh = new Mesh();
             break;
         case 'g':
+            if (currentMesh == nullptr)
+            {
+                currentMesh = new Mesh();
+                break;
+            }
             meshes.push_back(currentMesh);
             currentMesh = new Mesh();
             break;

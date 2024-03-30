@@ -35,32 +35,47 @@ void Renderer3D::RenderUpdate()
 
 	int previousLastIndicie = 0;
 	int previousLastIndicieUV = 0;
-	for (int j = 0; j < objectMeshes.size(); j++)
-	{
-		if (objectMeshes[j]->verts.size() == 0)
-			return;
-		if (objectMeshes[j]->isQuadMesh)
-			glBegin(GL_QUADS);
-		else
-			glBegin(GL_TRIANGLES);
-		for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
-		{
-			int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastIndicie;
-			int UVVertexIndicie = objectMeshes[j]->UVindicies[i] -1- previousLastIndicieUV;
+    for (int j = 0; j < objectMeshes.size(); j++)
+    {
+        if (objectMeshes[j]->verts.empty() || objectMeshes[j]->verts.data() == NULL)
+            continue;  // Skip empty mesh
 
-			Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
-			Vector2* UV = objectMeshes[j]->textureUVs[UVVertexIndicie];
+        if (objectMeshes[j]->isQuadMesh)
+            glBegin(GL_QUADS);
+        else
+            glBegin(GL_TRIANGLES);
 
-			glTexCoord2f(UV->x, UV->y);
-			//glColor3f(vertex->x, vertex->y, vertex->z);
-			glVertex3f(vertex->x * object->Transform.Scale.x, vertex->y * object->Transform.Scale.y, vertex->z * object->Transform.Scale.z);
-		}
+        for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
+        {
+            int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastIndicie;
+            int UVVertexIndicie = objectMeshes[j]->UVindicies[i] - 1 - previousLastIndicieUV;
 
-		glDisable(GL_TEXTURE_2D);
-		glEnd();
-		previousLastIndicie = objectMeshes[j]->indicies[objectMeshes[j]->indicies.size() - 1];
-		previousLastIndicieUV = objectMeshes[j]->UVindicies[objectMeshes[j]->UVindicies.size() - 1];
-	}
+            if (0 <= UVVertexIndicie && UVVertexIndicie < objectMeshes[j]->textureUVs.size())
+            {
+                Vector2* UV = objectMeshes[j]->textureUVs[UVVertexIndicie];
+                glTexCoord2f(
+                    UV->x,
+                    UV->y
+                );
+            }
+
+            if (0 <= VertexIndicie && VertexIndicie < objectMeshes[j]->verts.size())
+            {
+                Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
+                glVertex3f(
+                    vertex->x * object->Transform.Scale.x,
+                    vertex->y * object->Transform.Scale.y,
+                    vertex->z * object->Transform.Scale.z
+                );
+            }
+
+        }
+
+        glEnd();
+
+        previousLastIndicie = objectMeshes[j]->indicies.size() - 1 ;
+        previousLastIndicieUV = objectMeshes[j]->UVindicies.size() - 1;
+    }
 	
 }
 
