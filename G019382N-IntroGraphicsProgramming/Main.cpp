@@ -53,19 +53,23 @@ Main::Main(int argc, char* argv[])
 
 	//Mesh* mesh = ml.LoadMeshAtPath("Models/ShittyQuadTest.obj");
 	//std::cout << "gfdg";
-	GLObject* obj2 = new GLObject();
-	obj2->Transform.Scale.x = 0.1f;
-	obj2->Transform.Scale.y = 0.1f;
-	obj2->Transform.Scale.z = 0.1;
-	objects.push_back(obj2);
-	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-	GLuint i = image.ReadImage("Models/PINTURA_01.1001.jpg");
-	renderer2->SetTexture(i);
-	renderer2->objectMeshes = ml.LoadMeshAtPath("Models/PINTURA_01.obj");
-	renderer2->color = GlutColor(0, 128, 128,1);
-	obj2->render3D = renderer2;
-	obj2->Transform.Position.z = -6;
-	obj2->Transform.Position.y = -1;
+	for (int i = 0; i < 37; i++)
+	{
+		GLObject* obj2 = new GLObject();
+		obj2->Transform.Scale.x = 0.1f;
+		obj2->Transform.Scale.y = 0.1f;
+		obj2->Transform.Scale.z = 0.1;
+		objects.push_back(obj2);
+		Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
+		GLuint e = image.ReadImage("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns_Body_D.png");
+		renderer2->SetTexture(e);
+		renderer2->objectMeshes = ml.LoadMeshAtPath("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns.obj");
+		renderer2->color = GlutColor(0, 128, 128, 1);
+		obj2->render3D = renderer2;
+		obj2->Transform.Position.z = -1 * i;
+		obj2->Transform.Position.y = -1.1f;
+	}
+	
 	
 
 	glutMainLoop();
@@ -78,48 +82,75 @@ Main::~Main(void)
 
 void Main::Update()
 {
-	double lastTime = glutGet(GLUT_ELAPSED_TIME);
-	int nbFrames = 0;
+	//double lastTime = glutGet(GLUT_ELAPSED_TIME);
+	//int nbFrames = 0;
 
-	do
+	//do
+	//{
+
+	//	// Measure speed
+	//	double currentTime = glutGet(GLUT_ELAPSED_TIME);
+	//	nbFrames++;
+	//	if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
+	//		// printf and reset timer
+	//		printf("%f ms/frame\n", 1000.0 / double(nbFrames));
+	//		nbFrames = 0;
+	//		lastTime += 1.0;
+	//	}
+
+
+	//	glutPostRedisplay();
+	//	HandleInput();
+	//	ReBuildProjectionMatrix();
+
+	//	rotationX += .5f;
+	//	if (rotationX >= 360.0f)
+	//		rotationX = 0.0f;
+
+	//	//rotationY += .1f;
+	//	//if (rotationY >= 360.0f)
+	//	//	rotationY = 0.0f;
+
+	//	//rotationZ += .1f;
+	//	//if (rotationZ >= 360.0f)
+	//	//	rotationZ = 0.0f;
+
+
+	//	for (size_t i = 0; i < objects.size(); i++)
+	//	{
+	//		objects[i]->Transform.Rotation.x = rotationX;
+	//		objects[i]->Transform.Rotation.y = rotationY;
+	//		objects[i]->Transform.Rotation.z = rotationZ;
+	//	}
+	//} while (buffer[(int)'p'] == true);
+	// Measure speed
+
+
+
+
+	glutPostRedisplay();
+	HandleInput();
+	ReBuildProjectionMatrix();
+
+	rotationX += .5f;
+	if (rotationX >= 360.0f)
+		rotationX = 0.0f;
+
+	//rotationY += .1f;
+	//if (rotationY >= 360.0f)
+	//	rotationY = 0.0f;
+
+	//rotationZ += .1f;
+	//if (rotationZ >= 360.0f)
+	//	rotationZ = 0.0f;
+
+
+	for (size_t i = 0; i < objects.size(); i++)
 	{
-
-		// Measure speed
-		double currentTime = glutGet(GLUT_ELAPSED_TIME);
-		nbFrames++;
-		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
-			// printf and reset timer
-			printf("%f ms/frame\n", 1000.0 / double(nbFrames));
-			nbFrames = 0;
-			lastTime += 1.0;
-		}
-
-
-		glutPostRedisplay();
-		HandleInput();
-		ReBuildProjectionMatrix();
-
-		rotationX += .5f;
-		if (rotationX >= 360.0f)
-			rotationX = 0.0f;
-
-		//rotationY += .1f;
-		//if (rotationY >= 360.0f)
-		//	rotationY = 0.0f;
-
-		//rotationZ += .1f;
-		//if (rotationZ >= 360.0f)
-		//	rotationZ = 0.0f;
-
-
-		for (size_t i = 0; i < objects.size(); i++)
-		{
-			objects[i]->Transform.Rotation.x = rotationX;
-			objects[i]->Transform.Rotation.y = rotationY;
-			objects[i]->Transform.Rotation.z = rotationZ;
-		}
-	} while (buffer[(int)'p'] == true);
-	
+		objects[i]->Transform.Rotation.x = rotationX;
+		objects[i]->Transform.Rotation.y = rotationY;
+		objects[i]->Transform.Rotation.z = rotationZ;
+	}
 	
 	
 }
@@ -210,9 +241,9 @@ void Main::HandleInput()
 	if (buffer[(int)'1'] == true)
 		objects[0]->Transform.Position.x -= 0.1f;
 
-	if (buffer[(int)'2'] == true)
+	if (buffer[(int)'l'] == true)
 		objects[0]->Transform.Position.y += 0.1f;
-	if (buffer[(int)'9'] == true)
+	if (buffer[(int)'k'] == true)
 		objects[0]->Transform.Position.y -= 0.1f;
 
 	if (buffer[(int)'3'] == true)
