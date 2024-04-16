@@ -225,9 +225,13 @@ void Main::KeyboardUp(unsigned char key, int x, int y)
 void Main::HandleInput()
 {
 	if (buffer[(int)'w'] == true)
-		cameraTransform.Position.z += .1f;
+		cameraTransform.Position + (cameraFront*.1f);
 	if (buffer[(int)'s'] == true)
-		cameraTransform.Position.z -= .1f;
+	{
+		cameraTransform.Position - (cameraFront * .1f);
+		std::cout << cameraTransform.Position.ToString();
+		std::cout << (cameraFront * .1f).ToString();
+	}
 
 	if (buffer[(int)'d'] == true)
 		cameraTransform.Position.x -= .1f;

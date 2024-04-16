@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <string>
 
 struct Vector2 
 {
@@ -39,6 +40,16 @@ struct Vector3
 		return Vector3(this->x / scale, this->y / scale, this->z / scale);
 	}
 
+	Vector3 operator*(Vector3 second)
+	{
+		return Vector3(this->x * second.x, this->y * second.y, this->z * second.z);
+	}
+
+	Vector3 operator*(float second)
+	{
+		return Vector3(this->x * second, this->y * second, this->z * second);
+	}
+
 	float Magnitude() { return std::sqrt(SqrMagnitude()); }
 	Vector3 Normilized() { return Vector3(this->operator/(Magnitude())); }
 	float SqrMagnitude() { return (this->x * this->x) + (this->y * this->y) + (this->z * this->z); }
@@ -52,6 +63,11 @@ struct Vector3
 		this->x = x;
 		this->y = y;
 		this->z = z;
+	}
+
+	string ToString() {
+		string s = std::to_string(this->x) + ":" + std::to_string(this->y) + ":" + std::to_string(this->z) + "\n";
+		return s;
 	}
 };
 

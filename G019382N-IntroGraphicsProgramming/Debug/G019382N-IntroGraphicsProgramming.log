@@ -1,5 +1,28 @@
-﻿  Main.cpp
+﻿  EventHandler.cpp
+  GLObject.cpp
+  GLUTCallbacks.cpp
 C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(59,31): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(248,45): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(72,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(72,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(73,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(73,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(76,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(77,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Main.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(281,45): warning C4305: 'argument': truncation from 'double' to 'float'
+  MathUtils.cpp
+  Mesh.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Mesh.cpp(19,20): warning C4018: '<': signed/unsigned mismatch
+  ModelLoader.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(166,23): warning C4018: '<': signed/unsigned mismatch
+  Renderer3D.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(39,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(49,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(54,57): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(63,53): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+ImageReader.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'ImageReader.obj' or at 'C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\vc143.pdb'; linking object as if no debug info
+GL3D.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'GL3D.obj' or at 'C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\vc143.pdb'; linking object as if no debug info
+GL2D.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'GL2D.obj' or at 'C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\vc143.pdb'; linking object as if no debug info
   G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
