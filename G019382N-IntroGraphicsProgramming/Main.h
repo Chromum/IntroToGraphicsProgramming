@@ -51,6 +51,9 @@ public:
 	int screenWidth;
 	int screenHeight;
 
+	Transform cameraTransform;
+	Vector3 cameraFront;
+
 	//Camera
 	
 private:

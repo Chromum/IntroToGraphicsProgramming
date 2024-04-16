@@ -68,15 +68,42 @@ namespace GLUTCallbacks
 	}
 
 	void MouseMove(int x, int y) {
-		int centerX = (float)main->screenWidth / 2;
-		int centerY = (float)main->screenHeight / 2;
-		static Vector2 mouseLastFrame;
+		static bool firstTime = true;
+		static Vector2 mouseLastFrame = Vector2(main->screenWidth/2, main->screenHeight/2);
+		Vector2 mouseCurrentFrame = Vector2(x, y);
 
-		Vector2 mouseCurrentFrame = Vector2{((float)x-centerX),((float)y-centerY)};
-		main->mouseDelta = mouseCurrentFrame - mouseLastFrame;
+		if (firstTime) {
+			mouseLastFrame.x = x;
+			mouseLastFrame.y = y;
+			firstTime = false;
+		}
 
-
+		float xOffset = mouseCurrentFrame.x - mouseLastFrame.x;
+		float yOffset = mouseCurrentFrame.y - mouseLastFrame.y;
 		mouseLastFrame = mouseCurrentFrame;
+
+		float sens = 0.1f;
+
+		xOffset *= sens;
+		yOffset *= sens;
+
+		static float pitch;
+		static float yaw;
+
+		pitch += xOffset;
+		yaw += yOffset;
+
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
+
+		main->cameraTransform.Rotation.x = -(cos(ToRad(pitch)) * cos(ToRad(yaw)));
+		main->cameraTransform.Rotation.y = -sin(ToRad(yaw));
+		main->cameraTransform.Rotation.z = -(sin(ToRad(pitch)) * cos(ToRad(yaw)));
+		main->cameraFront = main->cameraTransform.Rotation.Normilized();
+
+
 	}
 
 

@@ -5,7 +5,6 @@
 #include "ImageReader.h"
 #include "Image.h"
 
-Transform cameraTransform;
 
 
 int main(int argc, char* argv[])
@@ -43,6 +42,7 @@ Main::Main(int argc, char* argv[])
 	glutMouseFunc(GLUTCallbacks::MouseClick);
 	glutPassiveMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
+	glutSetCursor(GLUT_CURSOR_NONE);
 	//glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -53,22 +53,21 @@ Main::Main(int argc, char* argv[])
 
 	//Mesh* mesh = ml.LoadMeshAtPath("Models/ShittyQuadTest.obj");
 	//std::cout << "gfdg";
-	for (int i = 0; i < 37; i++)
-	{
-		GLObject* obj2 = new GLObject();
-		obj2->Transform.Scale.x = 0.1f;
-		obj2->Transform.Scale.y = 0.1f;
-		obj2->Transform.Scale.z = 0.1;
-		objects.push_back(obj2);
-		Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-		GLuint e = image.ReadImage("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns_Body_D.png");
-		renderer2->SetTexture(e);
-		renderer2->objectMeshes = ml.LoadMeshAtPath("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns.obj");
-		renderer2->color = GlutColor(0, 128, 128, 1);
-		obj2->render3D = renderer2;
-		obj2->Transform.Position.z = -1 * i;
-		obj2->Transform.Position.y = -1.1f;
-	}
+	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns.obj");
+	GLuint image2 = image.ReadImage("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns_Body_D.png");
+	GLObject* obj2 = new GLObject();
+	obj2->Transform.Scale.x = 1;
+	obj2->Transform.Scale.y = 1;
+	obj2->Transform.Scale.z = 1;
+	objects.push_back(obj2);
+	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
+	renderer2->SetTexture(image2);
+	renderer2->objectMeshes = meshes;
+	renderer2->color = GlutColor(0, 128, 128, 1);
+	obj2->render3D = renderer2;
+	obj2->Transform.Position.x = 0;
+	obj2->Transform.Position.z = -1;
+	obj2->Transform.Position.y = -1;
 	
 	
 
@@ -280,22 +279,32 @@ void Main::ReBuildProjectionMatrix()
 	float height = _near * tangent;           // half height of near plane
 	float width = height * screenWidth / screenHeight;       // half width of near plane
 	// params: left, right, bottom, top, near, far
-	glFrustum(-width, width, -height, height, _near, _far);
+	gluPerspective(45, 1.77777777778, 0.01, 1000);
 
 	
-
-	if (rightMouse)
-	{
-		cameraTransform.Rotation.y += mouseDelta.x * .01f;
-		cameraTransform.Rotation.x += mouseDelta.y * .01f;
-	}
+	
+	//if (rightMouse)
+	//{
+	//	cameraTransform.Rotation.y += mouseDelta.x * .01f;
+	//	cameraTransform.Rotation.x += mouseDelta.y * .01f;
+	//}
 	//cameraTransform.Rotation.y += mouseDelta.y * .1f;
 	//cameraTransform.Rotation.x += mouseDelta.x * .1f;
 
-	glTranslatef(cameraTransform.Position.x, cameraTransform.Position.y, cameraTransform.Position.z);
-	glRotatef(cameraTransform.Rotation.y, 1.0f, 0, 0);
-	glRotatef(cameraTransform.Rotation.x, 0, 1.0f, 0);
-	//glRotatef(cameraTransform.Rotation.z, 0, 0, 1.0f);
+	Vector3 cameraUp = Vector3(0.0f, 1.0f, 0.0f);
+	gluLookAt(
+		cameraTransform.Position.x,
+		cameraTransform.Position.y,
+		cameraTransform.Position.z,
+
+		cameraTransform.Position.x + cameraFront.x,
+		cameraTransform.Position.y + cameraFront.y,
+		cameraTransform.Position.z + cameraFront.z,
+
+		cameraUp.x,
+		cameraUp.y,
+		cameraUp.z);
+
 	glMatrixMode(GL_MODELVIEW);
 
 
