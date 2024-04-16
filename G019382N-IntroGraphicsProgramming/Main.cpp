@@ -43,7 +43,7 @@ Main::Main(int argc, char* argv[])
 	glutPassiveMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
 	glutSetCursor(GLUT_CURSOR_NONE);
-	//glutFullScreen();
+	glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	ReBuildProjectionMatrix();
@@ -53,12 +53,12 @@ Main::Main(int argc, char* argv[])
 
 	//Mesh* mesh = ml.LoadMeshAtPath("Models/ShittyQuadTest.obj");
 	//std::cout << "gfdg";
-	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns.obj");
-	GLuint image2 = image.ReadImage("Models/B-ACL_iOS_HERO_Bruce_Wayne_Batman_Dark_Knight_Returns_Body_D.png");
+	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/char_apple.obj");
+	GLuint image2 = image.ReadImage("Models/Apple_NewHead_Albedo.png");
 	GLObject* obj2 = new GLObject();
-	obj2->Transform.Scale.x = 1;
-	obj2->Transform.Scale.y = 1;
-	obj2->Transform.Scale.z = 1;
+	obj2->Transform.Scale.x = .1f;
+	obj2->Transform.Scale.y = .1f;
+	obj2->Transform.Scale.z = .1f;
 	objects.push_back(obj2);
 	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
 	renderer2->SetTexture(image2);
@@ -144,12 +144,12 @@ void Main::Update()
 	//	rotationZ = 0.0f;
 
 
-	for (size_t i = 0; i < objects.size(); i++)
-	{
-		objects[i]->Transform.Rotation.x = rotationX;
-		objects[i]->Transform.Rotation.y = rotationY;
-		objects[i]->Transform.Rotation.z = rotationZ;
-	}
+	//for (size_t i = 0; i < objects.size(); i++)
+	//{
+	//	objects[i]->Transform.Rotation.x = rotationX;
+	//	objects[i]->Transform.Rotation.y = rotationY;
+	//	objects[i]->Transform.Rotation.z = rotationZ;
+	//}
 	
 	
 }
@@ -224,21 +224,13 @@ void Main::KeyboardUp(unsigned char key, int x, int y)
 
 void Main::HandleInput()
 {
-	if (buffer[(int)'w'] == true)
-		cameraTransform.Position + (cameraFront*.1f);
-	if (buffer[(int)'s'] == true)
-	{
-		cameraTransform.Position - (cameraFront * .1f);
-		std::cout << cameraTransform.Position.ToString();
-		std::cout << (cameraFront * .1f).ToString();
-	}
+	int forward = buffer['w'] - buffer['s'];
+	int horizontal = buffer['a'] - buffer['d'];
+	int vertical = buffer['q'] - buffer['e'];
 
-	if (buffer[(int)'d'] == true)
-		cameraTransform.Position.x -= .1f;
-	if (buffer[(int)'a'] == true)
-		cameraTransform.Position.x += .1f;
-
-
+	inputVector = Vector3(horizontal, vertical, forward);
+	//if(buffer['s'])
+	//	std::cout << inputVector.ToString();
 	if (buffer[(int)'0'] == true)
 		objects[0]->Transform.Position.x += 0.1f;
 	if (buffer[(int)'1'] == true)
@@ -276,13 +268,6 @@ void Main::ReBuildProjectionMatrix()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	float _near = 0.1f;
-	float _far = 500.0f;
-
-	float tangent = tanf(45 / 2 * 3.14159 / 180);   // tangent of half fovY
-	float height = _near * tangent;           // half height of near plane
-	float width = height * screenWidth / screenHeight;       // half width of near plane
-	// params: left, right, bottom, top, near, far
 	gluPerspective(45, 1.77777777778, 0.01, 1000);
 
 	
@@ -295,23 +280,40 @@ void Main::ReBuildProjectionMatrix()
 	//cameraTransform.Rotation.y += mouseDelta.y * .1f;
 	//cameraTransform.Rotation.x += mouseDelta.x * .1f;
 
+	
+
+	Vector3 relMove = Vector3(
+		cos(ToRad(pitch)) * -inputVector.z - sin(ToRad(pitch)) * inputVector.x,
+		sin(ToRad(yaw)),
+		sin(ToRad(pitch)) * -inputVector.z + cos(ToRad(pitch)) * inputVector.x
+	);
+
+	//std::cout << relMove.ToString();
+
+	cameraTransform.Position.x += relMove.x/2;
+	cameraTransform.Position.y += relMove.y/2;
+	cameraTransform.Position.z += relMove.z/2;
+
+
 	Vector3 cameraUp = Vector3(0.0f, 1.0f, 0.0f);
 	gluLookAt(
 		cameraTransform.Position.x,
 		cameraTransform.Position.y,
 		cameraTransform.Position.z,
 
-		cameraTransform.Position.x + cameraFront.x,
-		cameraTransform.Position.y + cameraFront.y,
-		cameraTransform.Position.z + cameraFront.z,
+		cameraTransform.Position.x + cameraTransform.Rotation.x,
+		cameraTransform.Position.y + cameraTransform.Rotation.y,
+		cameraTransform.Position.z + cameraTransform.Rotation.z,
 
 		cameraUp.x,
 		cameraUp.y,
 		cameraUp.z);
 
+	//std::cout << cameraTransform.Position.ToString();
+
 	glMatrixMode(GL_MODELVIEW);
 
-
+	relMove = Vector3(.0f,.0f,.0f);
 }
 
 

@@ -65,8 +65,8 @@ struct Vector3
 		this->z = z;
 	}
 
-	string ToString() {
-		string s = std::to_string(this->x) + ":" + std::to_string(this->y) + ":" + std::to_string(this->z) + "\n";
+	std::string ToString() {
+		std::string s = std::to_string(this->x) + ":" + std::to_string(this->y) + ":" + std::to_string(this->z) + "\n";
 		return s;
 	}
 };

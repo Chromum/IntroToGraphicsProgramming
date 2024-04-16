@@ -93,10 +93,14 @@ namespace GLUTCallbacks
 		pitch += xOffset;
 		yaw += yOffset;
 
-		if (pitch > 89.0f)
-			pitch = 89.0f;
-		if (pitch < -89.0f)
-			pitch = -89.0f;
+		main->pitch = pitch;
+		main->yaw = yaw;
+
+
+		if (yaw > 89.0f)
+			yaw = 89.0f;
+		if (yaw < -89.0f)
+			yaw = -89.0f;
 
 		main->cameraTransform.Rotation.x = -(cos(ToRad(pitch)) * cos(ToRad(yaw)));
 		main->cameraTransform.Rotation.y = -sin(ToRad(yaw));
