@@ -284,9 +284,11 @@ void Main::ReBuildProjectionMatrix()
 
 	Vector3 relMove = Vector3(
 		cos(ToRad(pitch)) * -inputVector.z - sin(ToRad(pitch)) * inputVector.x,
-		sin(ToRad(yaw)),
+		inputVector.y,
 		sin(ToRad(pitch)) * -inputVector.z + cos(ToRad(pitch)) * inputVector.x
 	);
+
+	relMove = relMove + (cameraFront * inputVector);
 
 	//std::cout << relMove.ToString();
 
