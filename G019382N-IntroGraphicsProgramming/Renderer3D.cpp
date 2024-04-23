@@ -70,6 +70,10 @@ void Renderer3D::RenderUpdate()
                 );
             }
 
+
+
+            
+
         }
 
         glEnd();
@@ -78,7 +82,7 @@ void Renderer3D::RenderUpdate()
         previousLastIndicieUV = objectMeshes[j]->UVindicies.size() - 1;
     }
 
-    glMatrixMode(GL_PROJECTION);
+   // glMatrixMode(GL_PROJECTION);
 
 }
 

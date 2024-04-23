@@ -1,5 +1,6 @@
 #include "GLUTCallbacks.h"
 #include "Main.h"
+#include "Constants.h"
 
 
 namespace GLUTCallbacks
@@ -46,7 +47,7 @@ namespace GLUTCallbacks
 		main->screenWidth = width;
 		main->screenHeight = height;
 
-		main->ReBuildProjectionMatrix();
+		//main->ReBuildProjectionMatrix();
 	}
 
 	void MouseClick(int button, int state, int x, int y) 
@@ -106,6 +107,20 @@ namespace GLUTCallbacks
 		main->cameraTransform.Rotation.y = -sin(ToRad(yaw));
 		main->cameraTransform.Rotation.z = -(sin(ToRad(pitch)) * cos(ToRad(yaw)));
 		main->cameraFront = main->cameraTransform.Rotation.Normilized();
+
+
+		if (mouseCurrentFrame.x < 100 || x > GLUT_SCREEN_WIDTH - 100)
+		{
+			mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
+			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
+			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+		}
+		else if (y < 100 || y > GLUT_SCREEN_HEIGHT - 100)
+		{
+			mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
+			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
+			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+		}
 
 
 	}

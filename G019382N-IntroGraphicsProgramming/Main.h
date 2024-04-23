@@ -53,7 +53,7 @@ public:
 
 	Transform cameraTransform;
 	Vector3 cameraFront;
-	Vector3 inputVector = Vector3();
+	Vector3 inputVector = Vector3(0,0,0);
 
 	float pitch;
 	float yaw;
