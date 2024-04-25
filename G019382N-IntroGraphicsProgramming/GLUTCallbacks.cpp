@@ -89,23 +89,23 @@ namespace GLUTCallbacks
 		yOffset *= sens;
 
 		static float pitch;
-		static float yaw;
+		static float yaw = -90;
 
-		pitch += xOffset;
-		yaw += yOffset;
+		pitch -= yOffset;
+		yaw += xOffset;
 
 		main->pitch = pitch;
 		main->yaw = yaw;
 
 
-		if (yaw > 89.0f)
-			yaw = 89.0f;
-		if (yaw < -89.0f)
-			yaw = -89.0f;
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
 
-		main->cameraTransform.Rotation.x = -(cos(ToRad(pitch)) * cos(ToRad(yaw)));
-		main->cameraTransform.Rotation.y = -sin(ToRad(yaw));
-		main->cameraTransform.Rotation.z = -(sin(ToRad(pitch)) * cos(ToRad(yaw)));
+		main->cameraTransform.Rotation.x = (cos(ToRad(yaw)) * cos(ToRad(pitch)));
+		main->cameraTransform.Rotation.y = sin(ToRad(pitch));
+		main->cameraTransform.Rotation.z = (sin(ToRad(yaw)) * cos(ToRad(pitch)));
 		main->cameraFront = main->cameraTransform.Rotation.Normilized();
 
 
@@ -121,8 +121,6 @@ namespace GLUTCallbacks
 			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
 			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
 		}
-
-
 	}
 
 

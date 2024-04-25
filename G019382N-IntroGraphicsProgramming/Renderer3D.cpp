@@ -24,14 +24,14 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    //glLoadIdentity();
 	//std::cout << "fdsfd" << endl;
 	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
-
-	glEnable(GL_TEXTURE_2D);
+    glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
+    glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	int previousLastIndicie = 0;
@@ -45,6 +45,7 @@ void Renderer3D::RenderUpdate()
             glBegin(GL_QUADS);
         else
             glBegin(GL_TRIANGLES);
+
 
         for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
         {
@@ -64,16 +65,11 @@ void Renderer3D::RenderUpdate()
             {
                 Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
                 glVertex3f(
-                    vertex->x * object->Transform.Scale.x,
-                    vertex->y * object->Transform.Scale.y,
-                    vertex->z * object->Transform.Scale.z
+                    vertex->x,
+                    vertex->y,
+                    vertex->z
                 );
             }
-
-
-
-            
-
         }
 
         glEnd();
@@ -81,8 +77,6 @@ void Renderer3D::RenderUpdate()
         previousLastIndicie = objectMeshes[j]->indicies.size() - 1 ;
         previousLastIndicieUV = objectMeshes[j]->UVindicies.size() - 1;
     }
-
-   // glMatrixMode(GL_PROJECTION);
 
 }
 

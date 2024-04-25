@@ -53,9 +53,15 @@ struct Vector3
 	float Magnitude() { return std::sqrt(SqrMagnitude()); }
 	Vector3 Normilized() { return Vector3(this->operator/(Magnitude())); }
 	float SqrMagnitude() { return (this->x * this->x) + (this->y * this->y) + (this->z * this->z); }
-	static float Dot(Vector3 first, Vector3 second) { return ((first.x * second.x) + (first.y * second.y)); }
+	float Dot(Vector3 second) { return (this->x * second.x + this->y * second.y + this->z * second.z); }
 	static Vector3 Lerp(Vector3 first, Vector3 second, float value) { return Vector3((first.x + (second.x - first.x) * value), first.y + (second.y - first.y) * value, first.z + (second.z - first.z) * value); };
+	Vector3 Cross(Vector3 rhs) { return Vector3(this->y * rhs.z - this->z * rhs.y, this->z * rhs.x - this->x * rhs.z, this->x * rhs.y - this->y * rhs.x);  }
+	Vector3 RotateAroundAxis(Vector3 Axis, float angle)
+	{
+		Vector3 toReturn = *this;
 
+		return toReturn * std::cos(angle) + Axis.Cross(toReturn) * std::sin(angle) + Axis * Axis.Dot(toReturn) * (1 - std::cos(angle));
+	}
 
 	Vector3() { this->x = 1; this->y = 1; this->z = 1; };
 	Vector3(float x, float y, float z)
