@@ -24,8 +24,6 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();
-	//std::cout << "fdsfd" << endl;
 	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);

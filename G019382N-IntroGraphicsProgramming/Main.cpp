@@ -57,49 +57,15 @@ Main::Main(int argc, char* argv[])
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//cameraTransform.Position.x = 5;
-	//cameraTransform.Position.y = -10;
-	//cameraTransform.Position.z = 10;
-	//gluLookAt(cameraTransform.Position.x, cameraTransform.Position.y, cameraTransform.Position.z, 0, 0, 0, 0, 1, 0);
-
-	
-
 	ModelLoader ml = ModelLoader();
 	ImageReader image = ImageReader();
 
 	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/untitled.obj");
-	GLuint image2 = image.ReadImage("Models/untitled.png");
 
-	GLObject* obj1 = new GLObject();
-	obj1->Transform.Scale.x = 1;
-	obj1->Transform.Scale.y = 1;
-	obj1->Transform.Scale.z = 1;
-	objects.push_back(obj1);
-	Renderer3D* renderer1 = new Renderer3D(displayEvent, obj1);
-	renderer1->SetTexture(image2);
-	renderer1->objectMeshes = meshes;
-	renderer1->color = GlutColor(0, 128, 128, 1);
-	obj1->render3D = renderer1;
-	obj1->Transform.Position.x = 0;
-	obj1->Transform.Position.z = -10;
-	obj1->Transform.Position.y = 0;
+	GLObject* obj1 = new GLObject(Vector3(0,-10,0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes,displayEvent);
+	GLObject* obj2 = new GLObject(Vector3(-10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
+	GLObject* obj3 = new GLObject(Vector3(10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
 
-
-	GLObject* obj2 = new GLObject();
-	obj2->Transform.Scale.x = 1;
-	obj2->Transform.Scale.y = 1;
-	obj2->Transform.Scale.z = 1;
-	objects.push_back(obj2);
-	Renderer3D* renderer2 = new Renderer3D(displayEvent, obj2);
-	renderer2->SetTexture(image2);
-	renderer2->objectMeshes = meshes;
-	renderer2->color = GlutColor(0, 128, 128, 1);
-	obj2->render3D = renderer2;
-	obj2->Transform.Position.x = 10;
-	obj2->Transform.Position.z = -10;
-	obj2->Transform.Position.y = 0;
-
-	
 
 	glutMainLoop();
 }
@@ -112,11 +78,7 @@ Main::~Main(void)
 void Main::Update()
 {
 	glutPostRedisplay();
-	HandleInput();
-
-	rotationX += .5f;
-	if (rotationX >= 360.0f)
-		rotationX = 0.0f;	
+	HandleInput();	
 }
 
 void Main::Display()
@@ -155,11 +117,6 @@ void Main::KeyboardDown(unsigned char key, int x, int y)
 void Main::KeyboardUp(unsigned char key, int x, int y)
 {
 	buffer[key] = false;
-
-	//if (key == 'w')
-	//{
-	//	ReBuildProjectionMatrix();
-	//}
 }
 
 void Main::HandleInput()
@@ -180,18 +137,6 @@ void Main::HandleInput()
 		objects[0]->Transform.Position.z += 0.05f;
 	if (buffer[(int)'8'] == true)
 		objects[0]->Transform.Position.z -= 0.05f;
-
-	if (buffer[(int)'p'])
-	{
-		//static float angle = 0;
-		//angle += 0;
-		//cameraTransform.Rotation = Vector3(0, 1, 0) * ToRad(angle);
-
-		Vector3 posZ = Vector3( 0,0,1 );
-		posZ.RotateAroundAxis(Vector3(0, 1, 0), ToRad(90));
-		std::cout << posZ.RotateAroundAxis(Vector3(0, 1, 0), ToRad(90)).ToString();
-	}
-
 
 	if (buffer[(int)'w'])
 	{
@@ -236,8 +181,6 @@ void Main::ReBuildProjectionMatrix()
 {
 	Vector3 cameraUp = Vector3(0.0f, 1.0f, 0.0f);
 	Vector3 lookat_point = cameraFront + cameraTransform.Position;
-
-
 
 	glMatrixMode(GL_MODELVIEW);
 	{

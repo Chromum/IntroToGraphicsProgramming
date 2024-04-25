@@ -177,11 +177,16 @@ bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
         //Vector3 v3 = Vector3();
         while (getline(stream2, token2, '/'))
         {
+            if (token2.size() <= 0)
+                continue;
+
+
             switch (pointInArray) {
             case 0:
                 vector->push_back(std::stoi(token2));
                 break;
             case 1:
+                
                 vector2->push_back(std::stoi(token2));
                 break;
             case 2:
