@@ -46,13 +46,13 @@ Main::Main(int argc, char* argv[])
 	glutSetCursor(GLUT_CURSOR_NONE);
 	//glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
+	
 	//ReBuildProjectionMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
 	glViewport(0, 0, screenWidth, screenHeight);
-	gluPerspective(120, 1, 0.01, 1000);
+	gluPerspective(110, ((float)screenWidth / (float)screenHeight), 0.01, 1000);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -65,6 +65,10 @@ Main::Main(int argc, char* argv[])
 	GLObject* obj1 = new GLObject(Vector3(0,-10,0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes,displayEvent);
 	GLObject* obj2 = new GLObject(Vector3(-10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
 	GLObject* obj3 = new GLObject(Vector3(10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
+
+	objects.push_back(obj1);
+	objects.push_back(obj2);
+	objects.push_back(obj3);
 
 
 	glutMainLoop();
@@ -100,7 +104,10 @@ void Main::Display()
 		}
 	}
 
+
 	displayEvent->FireEvent();
+
+	glutWireSphere(3, 16, 16);
 
 	glFlush();
 	glutSwapBuffers();

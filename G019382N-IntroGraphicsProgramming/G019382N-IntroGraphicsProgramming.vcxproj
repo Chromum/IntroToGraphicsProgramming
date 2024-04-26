@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GL2D.h" />
@@ -141,9 +142,11 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Renderer3D.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GL2D.cpp" />
     <ClCompile Include="GL3D.cpp" />
@@ -155,6 +158,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="Renderer3D.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
