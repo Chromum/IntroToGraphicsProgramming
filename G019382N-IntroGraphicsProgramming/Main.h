@@ -14,6 +14,8 @@
 #include "EventHandler.h"
 #include <vector>
 
+class Sphere;
+
 using namespace std;
 
 
@@ -57,6 +59,8 @@ public:
 
 	float pitch;
 	float yaw;
+	Sphere* sphere;
+
 
 	//Camera
 	

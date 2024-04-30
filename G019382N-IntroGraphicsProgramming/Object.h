@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector3.h"
+#include "MathUtils.h"
 #include "GL3D.h"
 
 
@@ -14,7 +14,7 @@ public:
 	} Transform;
 
 	//Temp
-	enum ObjectType { Cube, NULL} renderType;
+	enum ObjectType { Cube, Sphere } renderType;
 	
 
 	void RenderObject();

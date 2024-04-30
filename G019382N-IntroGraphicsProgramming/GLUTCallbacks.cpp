@@ -1,6 +1,9 @@
 #include "GLUTCallbacks.h"
 #include "Main.h"
 #include "Constants.h"
+#include "Sphere.h"
+#include "GLObject.h"
+#include "ModelLoader.h"
 
 
 namespace GLUTCallbacks
@@ -52,17 +55,41 @@ namespace GLUTCallbacks
 
 	void MouseClick(int button, int state, int x, int y) 
 	{
+		Vector3 v3;
 		switch (button)
 		{
 		case GLUT_LEFT_BUTTON:
+
+			InterReturn r = main->sphere->CheckIfIntersect(main->cameraTransform.Position, main->cameraFront);
+
+			if (!r.result)
+			{
+				ModelLoader ml = ModelLoader();
+				std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/untitled.obj");
+
+
+
+				main->objects.push_back(new GLObject(r.v1, Vector3(.1f, .1f, .1f), 0, meshes, main->displayEvent));
+				main->objects.push_back(new GLObject(r.v2, Vector3(.1f, .1f, .1f), 0, meshes, main->displayEvent));
+
+
+				std::cout << "Hit the sphere" << std::endl;
+			}
+			else
+			{
+				std::cout << "Missed the sphere" << std::endl;
+			}
+
+
+
 			main->leftMouse = !main->leftMouse;
 			break;
-		case GLUT_RIGHT_BUTTON:
-			main->rightMouse = !main->rightMouse;
-			break;
-		case GLUT_MIDDLE_BUTTON:
-			main->middleMouse = !main->middleMouse;
-			break;
+		//case GLUT_RIGHT_BUTTON:
+		//	main->rightMouse = !main->rightMouse;
+		//	break;
+		//case GLUT_MIDDLE_BUTTON:
+		//	main->middleMouse = !main->middleMouse;
+		//	break;
 		}
 
 
@@ -121,6 +148,7 @@ namespace GLUTCallbacks
 			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
 			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
 		}
+		
 	}
 
 

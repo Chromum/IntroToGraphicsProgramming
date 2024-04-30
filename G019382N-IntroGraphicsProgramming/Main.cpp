@@ -4,6 +4,7 @@
 #include "ModelLoader.h"
 #include "ImageReader.h"
 #include "Image.h"
+#include "Sphere.h"
 
 Vector3 atVector = Vector3(0, 0, 0);
 Vector3 lookDirection = Vector3(0, 0, 0);
@@ -43,10 +44,9 @@ Main::Main(int argc, char* argv[])
 	glutMouseFunc(GLUTCallbacks::MouseClick);
 	glutPassiveMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
-	glutSetCursor(GLUT_CURSOR_NONE);
+	//glutSetCursor(GLUT_CURSOR_NONE);
 	//glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	
 	//ReBuildProjectionMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -65,6 +65,8 @@ Main::Main(int argc, char* argv[])
 	GLObject* obj1 = new GLObject(Vector3(0,-10,0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes,displayEvent);
 	GLObject* obj2 = new GLObject(Vector3(-10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
 	GLObject* obj3 = new GLObject(Vector3(10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
+	sphere = new Sphere();
+	sphere->Transform.Scale = Vector3(1, 1, 1);
 
 	objects.push_back(obj1);
 	objects.push_back(obj2);
@@ -90,24 +92,27 @@ void Main::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	ReBuildProjectionMatrix();
 
-	for (size_t i = 0; i < 5; i++)
-	{
-		for (size_t j = 0; j < 5; j++)
-		{
-			for (size_t k = 0; k < 5; k++)
-			{
-				glPushMatrix();
-				glTranslatef(i * 10, j * 10, k * 10);
-				glutSolidCube(1);
-				glPopMatrix();
-			}
-		}
-	}
+	//for (size_t i = 0; i < 5; i++)
+	//{
+	//	for (size_t j = 0; j < 5; j++)
+	//	{
+	//		for (size_t k = 0; k < 5; k++)
+	//		{
+	//			glPushMatrix();
+	//			glTranslatef(i * 10, j * 10, k * 10);
+	//			glutSolidCube(1);
+	//			glPopMatrix();
+	//		}
+	//	}
+	//}
+
+
+	sphere->Draw();
+
 
 
 	displayEvent->FireEvent();
 
-	glutWireSphere(3, 16, 16);
 
 	glFlush();
 	glutSwapBuffers();
