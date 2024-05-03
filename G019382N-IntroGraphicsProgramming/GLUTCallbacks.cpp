@@ -60,19 +60,19 @@ namespace GLUTCallbacks
 		{
 		case GLUT_LEFT_BUTTON:
 
-			InterReturn r = main->sphere->CheckIfIntersect(main->cameraTransform.Position, main->cameraFront);
+			GLfloat viewMatrix[16];
+			glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
+
+			Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
+
+			InterReturn r = main->sphere->CheckIfIntersect(main->cameraTransform.Position, cf);
+
+			main->startPoint = main->cameraTransform.Position;
+			main->endPoint = cf * 10;
+
 
 			if (!r.result)
 			{
-				ModelLoader ml = ModelLoader();
-				std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/untitled.obj");
-
-
-
-				main->objects.push_back(new GLObject(r.v1, Vector3(.1f, .1f, .1f), 0, meshes, main->displayEvent));
-				main->objects.push_back(new GLObject(r.v2, Vector3(.1f, .1f, .1f), 0, meshes, main->displayEvent));
-
-
 				std::cout << "Hit the sphere" << std::endl;
 			}
 			else
@@ -84,12 +84,6 @@ namespace GLUTCallbacks
 
 			main->leftMouse = !main->leftMouse;
 			break;
-		//case GLUT_RIGHT_BUTTON:
-		//	main->rightMouse = !main->rightMouse;
-		//	break;
-		//case GLUT_MIDDLE_BUTTON:
-		//	main->middleMouse = !main->middleMouse;
-		//	break;
 		}
 
 
@@ -135,6 +129,7 @@ namespace GLUTCallbacks
 		main->cameraTransform.Rotation.z = (sin(ToRad(yaw)) * cos(ToRad(pitch)));
 		main->cameraFront = main->cameraTransform.Rotation.Normilized();
 
+		
 
 		if (mouseCurrentFrame.x < 100 || x > GLUT_SCREEN_WIDTH - 100)
 		{

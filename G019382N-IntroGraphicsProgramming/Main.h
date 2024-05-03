@@ -36,6 +36,7 @@ public:
 	void KeyboardUp(unsigned char key, int x, int y);
 	void HandleInput();
 	void ReBuildProjectionMatrix();
+	void drawLine(Vector3 startPoint, Vector3 endPoint);
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");
@@ -63,6 +64,8 @@ public:
 
 
 	//Camera
+	Vector3 startPoint;
+	Vector3 endPoint;
 	
 private:
 	float rotationX;

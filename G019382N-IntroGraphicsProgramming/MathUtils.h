@@ -22,7 +22,7 @@ struct Vector2
 //	return Vector2(first.x + second.x, first.y + second.y);
 //}
 
-struct Vector3 
+struct Vector3
 {
 	float x, y, z;
 
@@ -48,6 +48,11 @@ struct Vector3
 	Vector3 operator*(float second)
 	{
 		return Vector3(this->x * second, this->y * second, this->z * second);
+	}
+
+	Vector3 operator-(float second)
+	{
+		return Vector3(this->x - second, this->y - second, this->z - second);
 	}
 
 	float Magnitude() { return std::sqrt(SqrMagnitude()); }

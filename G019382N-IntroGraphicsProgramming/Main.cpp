@@ -105,15 +105,34 @@ void Main::Display()
 	//		}
 	//	}
 	//}
-
-
+	drawLine(startPoint, endPoint);
 	sphere->Draw();
-
-
-
 	displayEvent->FireEvent();
 
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, screenWidth, 0, screenHeight);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	// Set circle properties
+	glColor3f(1.0f, 1.0f, 1.0f); // White color
 
+	// Draw a circle at the center of the screen
+	glBegin(GL_LINE_LOOP);
+	for (int i = 0; i < 360; ++i) {
+		float angle = i * 3.14159f / 180.0f;
+		float x = screenWidth / 2 + 2 * cos(angle);
+		float y = screenHeight / 2 + 2 * sin(angle);
+		glVertex2f(x, y);
+	}
+	glEnd();
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 
@@ -189,10 +208,18 @@ void Main::HandleInput()
 
 }
 
+void Main::drawLine(Vector3 startPoint, Vector3 endPoint) {
+	glBegin(GL_LINES);
+	glVertex3f(startPoint.x, startPoint.y, startPoint.z);
+	glVertex3f(endPoint.x, endPoint.y, endPoint.z);
+	glEnd();
+}
+
 void Main::ReBuildProjectionMatrix() 
 {
 	Vector3 cameraUp = Vector3(0.0f, 1.0f, 0.0f);
 	Vector3 lookat_point = cameraFront + cameraTransform.Position;
+
 
 	glMatrixMode(GL_MODELVIEW);
 	{
