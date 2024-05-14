@@ -1,5 +1,9 @@
 #include "GLObject.h"
 
+GLObject::GLObject()
+{
+}
+
 GLObject::GLObject(Vector3 pos, Vector3 scale, GLuint textureID, std::vector<Mesh*> meshes, EventHandler* displayEvent)
 {
 	this->Transform.Position = pos;

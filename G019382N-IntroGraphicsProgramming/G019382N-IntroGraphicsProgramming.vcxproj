@@ -137,6 +137,7 @@
     <ClInclude Include="GLUTUtils.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageReader.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Mesh.h" />

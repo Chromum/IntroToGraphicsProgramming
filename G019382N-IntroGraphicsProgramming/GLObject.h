@@ -8,6 +8,7 @@ using namespace std;
 class GLObject
 {
 public:
+	GLObject();
 	GLObject(Vector3 pos, Vector3 scale, GLuint textureID, std::vector<Mesh*> meshes, EventHandler* displayEvent);
 	Transform Transform;
 	Renderer3D* render3D = nullptr;
