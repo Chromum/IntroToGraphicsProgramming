@@ -92,19 +92,9 @@ void Main::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	ReBuildProjectionMatrix();
 
-	//for (size_t i = 0; i < 5; i++)
-	//{
-	//	for (size_t j = 0; j < 5; j++)
-	//	{
-	//		for (size_t k = 0; k < 5; k++)
-	//		{
-	//			glPushMatrix();
-	//			glTranslatef(i * 10, j * 10, k * 10);
-	//			glutSolidCube(1);
-	//			glPopMatrix();
-	//		}
-	//	}
-	//}
+
+
+
 	drawLine(startPoint, endPoint);
 	sphere->Draw();
 	displayEvent->FireEvent();
@@ -128,6 +118,9 @@ void Main::Display()
 		glVertex2f(x, y);
 	}
 	glEnd();
+
+	glRasterPos2f(100, 120);
+	glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)"text.c_str()");
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
