@@ -37,8 +37,7 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             switch(fileContents[1])
             {
             case 'n':
-
-
+                currentMesh->AddNormal(LoadLine(fileContents, 2));
                 break;
             case 't':
                 currentMesh->AddTextureUV(LoadLineV2(fileContents, 2));
@@ -56,7 +55,7 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
                 currentMesh = new Mesh();
                 currentMesh->matData = currentMatData;
             }
-            currentMesh->isQuadMesh = LoadLineInt(fileContents, 2, &currentMesh->indicies, &currentMesh->UVindicies);
+            currentMesh->isQuadMesh = LoadLineInt(fileContents, 2, &currentMesh->indicies, &currentMesh->UVindicies, &currentMesh->Normalindicies);
             break;
         case 's':
             std::cout << "Skipping line " << lineCount << " was a shading mode!" << std::endl;
@@ -166,7 +165,7 @@ Vector2* ModelLoader::LoadLineV2(std::string line, int startPoint)
 }
 
 
-bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsigned int>* vector, std::vector<unsigned int>* vector2)
+bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsigned int>* vector, std::vector<unsigned int>* vector2, std::vector<unsigned int>* vector3)
 {   
     bool isQuadMode = false;
     std::string string = line;
@@ -207,11 +206,10 @@ bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
                 vector->push_back(std::stoi(token2));
                 break;
             case 1:
-                
                 vector2->push_back(std::stoi(token2));
                 break;
             case 2:
-                //v3.z = std::stoi(token2);
+                vector3->push_back(std::stoi(token2));
                 break;
             }
 

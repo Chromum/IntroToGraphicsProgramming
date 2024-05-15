@@ -37,6 +37,7 @@ public:
 	void HandleInput();
 	void ReBuildProjectionMatrix();
 	void drawLine(Vector3 startPoint, Vector3 endPoint);
+	void DrawTextAtPos(const char* text, Vector2 pos);
 	void DrawHUD();
 	
 	//Event Handlers

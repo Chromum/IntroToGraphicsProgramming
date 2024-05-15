@@ -1,3 +1,5 @@
-﻿  ModelLoader.cpp
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(185,23): warning C4018: '<': signed/unsigned mismatch
+﻿  Main.cpp
+C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(89,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(107,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

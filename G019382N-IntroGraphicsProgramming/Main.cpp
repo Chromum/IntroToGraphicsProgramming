@@ -6,6 +6,8 @@
 #include "Image.h"
 #include "Sphere.h"
 #include "LightingManager.h"
+#include <chrono>
+
 
 Vector3 atVector = Vector3(0, 0, 0);
 Vector3 lookDirection = Vector3(0, 0, 0);
@@ -59,6 +61,7 @@ Main::Main(int argc, char* argv[])
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	
 
 	ModelLoader ml = ModelLoader();
 	int i = ImageReader().ReadImage("Models/Untitled.png");
@@ -95,10 +98,26 @@ Main::~Main(void)
 {
 }
 
+int PrevTime = 0;
+
 void Main::Update()
 {
+	const int numFrames = 100;
+	double fps = 0.0;
+
+	auto startTime = std::chrono::high_resolution_clock::now();;
+
+
+
+
+	DrawTextAtPos(std::to_string(fps).c_str(), Vector2(100, 125));
+
+
 	glutPostRedisplay();
 	HandleInput();	
+
+
+	PrevTime = currentTime;
 }
 
 void Main::Display()
@@ -184,6 +203,7 @@ void Main::HandleInput()
 			wireFrame = true;
 		}
 	}
+	
 
 	
 	return;
@@ -207,9 +227,8 @@ void Main::DrawHUD()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
-	// Set circle properties
-	glColor3f(1.0f, 1.0f, 1.0f); // White color
-
+	
+	glColor3f(1.0f, 1.0f, 1.0f);
 	// Draw a circle at the center of the screen
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < 360; ++i) {
@@ -219,14 +238,8 @@ void Main::DrawHUD()
 		glVertex2f(x, y);
 	}
 	glEnd();
-	
 
-	glPushMatrix();
-	glBindTexture(GL_TEXTURE_2D, 0);
-	glColor3f(1, .75f, .8f);
-	glRasterPos2f(100, 120);
-	glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)"text.c_str()");
-	glPopMatrix();
+	DrawTextAtPos(("Object Count: " + std::to_string(objects.size())).c_str(), Vector2(100, 125));
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
@@ -234,6 +247,15 @@ void Main::DrawHUD()
 	glPopMatrix();
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+}
+
+void Main::DrawTextAtPos(const char* text, Vector2 pos) {
+	glPushMatrix();
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glColor3f(1, .75f, .8f);
+	glRasterPos2f(pos.x,pos.y);
+	glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
+	glPopMatrix();
 }
 
 void Main::ReBuildProjectionMatrix() 

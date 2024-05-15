@@ -12,6 +12,11 @@ void Mesh::AddTextureUV(Vector2* v2)
 	textureUVs.push_back(v2);
 }
 
+void Mesh::AddNormal(Vector3* v3)
+{
+	normals.push_back(v3);
+}
+
 Mesh::Mesh() {
 }
 

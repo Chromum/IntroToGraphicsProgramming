@@ -36,6 +36,7 @@ void Renderer3D::RenderUpdate()
 
     int previousLastVertex = 0;
     int previousLastUV = 0;
+    int previousLastNormal = 0;
 
     for (int j = 0; j < objectMeshes.size(); j++)
     {
@@ -63,6 +64,13 @@ void Renderer3D::RenderUpdate()
         {
             int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastVertex;
             int UVVertexIndicie = objectMeshes[j]->UVindicies[i] - 1 - previousLastUV;
+            int NormalIndicie = objectMeshes[j]->Normalindicies[i] - 1 - previousLastNormal;
+
+            if (0 <= NormalIndicie && NormalIndicie < objectMeshes[j]->Normalindicies.size())
+            {
+                Vector3* normal = objectMeshes[j]->normals[NormalIndicie];
+                glNormal3f(normal->x, normal->y, normal->z);
+            }
 
             if (0 <= UVVertexIndicie && UVVertexIndicie < objectMeshes[j]->textureUVs.size())
             {
@@ -82,6 +90,7 @@ void Renderer3D::RenderUpdate()
         // Update previous last indices
         previousLastVertex += objectMeshes[j]->verts.size();
         previousLastUV += objectMeshes[j]->textureUVs.size();
+        previousLastNormal += objectMeshes[j]->normals.size();
     }
 
 

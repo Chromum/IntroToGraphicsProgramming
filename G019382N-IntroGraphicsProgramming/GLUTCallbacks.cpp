@@ -32,6 +32,7 @@ namespace GLUTCallbacks
 		main->Update();
 		updateTime = glutGet(GLUT_ELAPSED_TIME) - updateTime;
 		glutTimerFunc(preferedRefresh - updateTime, GLUTCallbacks::Timer, preferedRefresh - updateTime);
+		
 	}
 
 
