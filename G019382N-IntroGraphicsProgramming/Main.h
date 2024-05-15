@@ -37,6 +37,7 @@ public:
 	void HandleInput();
 	void ReBuildProjectionMatrix();
 	void drawLine(Vector3 startPoint, Vector3 endPoint);
+	void DrawHUD();
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");

@@ -5,6 +5,7 @@
 #include "ImageReader.h"
 #include "Image.h"
 #include "Sphere.h"
+#include "LightingManager.h"
 
 Vector3 atVector = Vector3(0, 0, 0);
 Vector3 lookDirection = Vector3(0, 0, 0);
@@ -39,6 +40,8 @@ Main::Main(int argc, char* argv[])
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glutKeyboardFunc(GLUTCallbacks::KeyboardKeyDown);
 	glutKeyboardUpFunc(GLUTCallbacks::KeyboardKeyUp);
 	glutMouseFunc(GLUTCallbacks::MouseClick);
@@ -52,26 +55,37 @@ Main::Main(int argc, char* argv[])
 	glLoadIdentity();
 
 	glViewport(0, 0, screenWidth, screenHeight);
-	gluPerspective(110, ((float)screenWidth / (float)screenHeight), 0.01, 1000);
+	gluPerspective(110, ((float)screenWidth / (float)screenHeight), 0.01, 10000);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	ModelLoader ml = ModelLoader();
-	ImageReader image = ImageReader();
+	int i = ImageReader().ReadImage("Models/Untitled.png");
 
-	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/untitled.obj");
 
-	GLObject* obj1 = new GLObject(Vector3(0,-10,0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes,displayEvent);
-	GLObject* obj2 = new GLObject(Vector3(-10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
-	GLObject* obj3 = new GLObject(Vector3(10, -10, 0), Vector3(1, 1, 1), image.ReadImage("Models/untitled.png"), meshes, displayEvent);
+	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/Model1.obj");
+	std::vector<Mesh*> meshes2 = ml.LoadMeshAtPath("Models/SkyboxCube.obj");
 	sphere = new Sphere();
 	sphere->Transform.Scale = Vector3(1, 1, 1);
 
-	objects.push_back(obj1);
-	objects.push_back(obj2);
-	objects.push_back(obj3);
+	GLObject* obj1 = new GLObject(Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent);
+	GLObject* obj10 = new GLObject(Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent);
 
+
+	objects.push_back(obj1);
+	//objects.push_back(obj2);
+	//objects.push_back(obj3);
+	objects.push_back(obj10);
+
+
+	LightingManager();
+	LightingManager::instance->AddLight(
+		Vector4(0,0,0,0),
+		Vector4(5.2f,5.2f,5.2f,5.0f),
+		Vector4(0.8f, 0.8f,0.8f,1.0f),
+		Vector4(0.2f,0.2f,0.2,1.0f)
+	);
 
 	glutMainLoop();
 }
@@ -93,39 +107,13 @@ void Main::Display()
 	ReBuildProjectionMatrix();
 
 
-
-
 	drawLine(startPoint, endPoint);
-	sphere->Draw();
+	sphere->Draw(Vector3());
 	displayEvent->FireEvent();
 
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluOrtho2D(0, screenWidth, 0, screenHeight);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-	// Set circle properties
-	glColor3f(1.0f, 1.0f, 1.0f); // White color
+	DrawHUD();
+	LightingManager::instance->RenderAllLights();
 
-	// Draw a circle at the center of the screen
-	glBegin(GL_LINE_LOOP);
-	for (int i = 0; i < 360; ++i) {
-		float angle = i * 3.14159f / 180.0f;
-		float x = screenWidth / 2 + 2 * cos(angle);
-		float y = screenHeight / 2 + 2 * sin(angle);
-		glVertex2f(x, y);
-	}
-	glEnd();
-
-	glRasterPos2f(100, 120);
-	glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)"text.c_str()");
-
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 
@@ -206,6 +194,46 @@ void Main::drawLine(Vector3 startPoint, Vector3 endPoint) {
 	glVertex3f(startPoint.x, startPoint.y, startPoint.z);
 	glVertex3f(endPoint.x, endPoint.y, endPoint.z);
 	glEnd();
+}
+
+void Main::DrawHUD()
+{
+	glDisable(GL_LIGHTING);
+	glDisable(GL_LIGHT0);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, screenWidth, 0, screenHeight);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	// Set circle properties
+	glColor3f(1.0f, 1.0f, 1.0f); // White color
+
+	// Draw a circle at the center of the screen
+	glBegin(GL_LINE_LOOP);
+	for (int i = 0; i < 360; ++i) {
+		float angle = i * 3.14159f / 180.0f;
+		float x = screenWidth / 2 + 2 * cos(angle);
+		float y = screenHeight / 2 + 2 * sin(angle);
+		glVertex2f(x, y);
+	}
+	glEnd();
+	
+
+	glPushMatrix();
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glColor3f(1, .75f, .8f);
+	glRasterPos2f(100, 120);
+	glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)"text.c_str()");
+	glPopMatrix();
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 }
 
 void Main::ReBuildProjectionMatrix() 

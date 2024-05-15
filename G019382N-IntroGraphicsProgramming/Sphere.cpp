@@ -1,10 +1,11 @@
 #include "Sphere.h"
 
-void Sphere::Draw() //https://antongerdelan.net/opengl/raycasting.html
+void Sphere::Draw(Vector3 col) //https://antongerdelan.net/opengl/raycasting.html
 {
 	this->Radius = (this->Transform.Scale.Magnitude());
 
 	glPushMatrix();
+	glColor3f(col.x, col.y, col.z);
 	glTranslatef(this->Transform.Position.x, this->Transform.Position.y, this->Transform.Position.z);
 	glutWireSphere(this->Radius,16,16);
 	glPopMatrix();

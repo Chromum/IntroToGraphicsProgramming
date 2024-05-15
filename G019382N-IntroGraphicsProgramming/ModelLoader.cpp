@@ -4,6 +4,7 @@
 #include <string>
 #include "MathUtils.h"
 #include <chrono>
+#include "ImageReader.h"
 
 std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
 {
@@ -17,6 +18,7 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
         return meshes;
 
     int lineCount = 0;
+    MaterialData* currentMatData = nullptr;
     Mesh* currentMesh = nullptr;
     while (getline(File, fileContents))
     {
@@ -29,10 +31,14 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             if (currentMesh == nullptr)
             {
                 currentMesh = new Mesh();
+                currentMesh->matData = currentMatData;
+                
             }
             switch(fileContents[1])
             {
             case 'n':
+
+
                 break;
             case 't':
                 currentMesh->AddTextureUV(LoadLineV2(fileContents, 2));
@@ -48,6 +54,7 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             if (currentMesh == nullptr)
             {
                 currentMesh = new Mesh();
+                currentMesh->matData = currentMatData;
             }
             currentMesh->isQuadMesh = LoadLineInt(fileContents, 2, &currentMesh->indicies, &currentMesh->UVindicies);
             break;
@@ -58,27 +65,41 @@ std::vector<Mesh*> ModelLoader::LoadMeshAtPath(std::string path)
             if (currentMesh == nullptr)
             {
                 currentMesh = new Mesh();
+                currentMesh->matData = currentMatData;
                 break;
             }
             meshes.push_back(currentMesh);
             currentMesh = new Mesh();
+            currentMesh->matData = currentMatData;
             break;
         case 'g':
             if (currentMesh == nullptr)
             {
                 currentMesh = new Mesh();
+                currentMesh->matData = currentMatData;
                 break;
             }
             meshes.push_back(currentMesh);
             currentMesh = new Mesh();
+            currentMesh->matData = currentMatData;
             break;
         case 'm':
+            currentMatData = new MaterialData();
+            currentMatData->LoadMaterialFile(fileContents);
+
             std::cout << "Skipping line " << lineCount << " was a material thingy!" << std::endl;
             break;
         case 'u':
+            std::string matName = fileContents.substr(fileContents.find(" ") + 1);
+
+            auto it = currentMatData->textureList.find(matName);
+
+            if (it != currentMatData->textureList.end())
+                currentMesh->texture = currentMatData->textureList[matName];
+            else
+                currentMesh->texture = 1;
+
             std::cout << "Skipping line " << lineCount << " was a comment!" << std::endl;
-            break;
-        default:
             break;
         }
         
@@ -198,13 +219,117 @@ bool ModelLoader::LoadLineInt(std::string line, int startPoint, std::vector<unsi
         }
         //VectorVector.push_back(v3);
     }
-
-    
-
-    //for (int j = 0; j < VectorVector.size(); j++)
-    //{
-    //    vector->push_back(VectorVector[j].x);
-    //}
     std::cout << "";
     return isQuadMode;
+}
+
+void MaterialData::LoadMaterialFile(std::string entered)
+{
+    ImageReader* image = new ImageReader();
+    //Getting filename 
+    std::string fileName = entered.substr(entered.find(" ") + 1);
+
+    std::string fileContents;
+    std::ifstream File;
+    File.open("Models/" + fileName);
+
+    std::string currentMaterial;
+
+    while (getline(File, fileContents)) {
+        switch (fileContents[0])
+        {
+        case '#':
+            break;
+        case 'n':
+            currentMaterial = fileContents.substr(fileContents.find(" ") + 1);
+            this->textureList.insert(std::pair<std::string, int>(currentMaterial, 0));
+            break;
+        case 'm':
+        {
+            size_t lastSlashPos = fileContents.find_last_of("/\\");
+
+            std::string e = fileContents.substr(lastSlashPos + 1);
+            this->textureList[currentMaterial] = image->ReadImage("Models/" + e);
+        }
+            break;
+        case 'K':
+            switch (fileContents[1])
+            {
+                case 'a':
+                {
+                    std::vector<std::string> stringVector;
+                    std::istringstream stream(fileContents);
+                    std::string token;
+
+                    while (getline(stream, token, ' '))
+                    {
+                        stringVector.push_back(token);
+                    }
+
+                    stringVector.erase(stringVector.begin());
+
+
+                    this->ambient.x = std::stof(stringVector[0]);
+                    this->ambient.y = std::stof(stringVector[1]);
+                    this->ambient.z = std::stof(stringVector[2]);
+                    std::cout << "";
+                }
+
+                    break;
+                case 'd':
+                {
+                    std::vector<std::string> stringVector;
+                    std::istringstream stream(fileContents);
+                    std::string token;
+
+                    while (getline(stream, token, ' '))
+                    {
+                        stringVector.push_back(token);
+                    }
+
+                    stringVector.erase(stringVector.begin());
+
+
+                    this->diffuse.x = std::stof(stringVector[0]);
+                    this->diffuse.y = std::stof(stringVector[1]);
+                    this->diffuse.z = std::stof(stringVector[2]);
+                    std::cout << "";
+                }
+
+                break;
+                case 's':
+                {
+                    std::vector<std::string> stringVector;
+                    std::istringstream stream(fileContents);
+                    std::string token;
+
+                    while (getline(stream, token, ' '))
+                    {
+                        stringVector.push_back(token);
+                    }
+
+                    stringVector.erase(stringVector.begin());
+
+
+                    this->specular.x = std::stof(stringVector[0]);
+                    this->specular.y = std::stof(stringVector[1]);
+                    this->specular.z = std::stof(stringVector[2]);
+                    std::cout << "";
+                }
+
+                    break;
+            }
+            break;
+        case 'N':
+        {
+            std::string e = fileContents.substr(fileContents.find(" ") + 1);
+            this->opticalDensity = std::stof(e);
+            std::cout << "";
+        }
+            break;
+        }
+    }
+
+
+    std::cout << "";
 }

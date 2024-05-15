@@ -6,6 +6,7 @@
 #include "GL/freeglut.h"
 #include "GL/freeglut_ext.h"
 #include "GL/freeglut_std.h"
+#include "ModelLoader.h"
 
 
 Renderer3D::Renderer3D(GLObject* object)
@@ -24,19 +25,33 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
+    glColor3f(1,1,1);
 	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
     glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
     glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture);
 
-	int previousLastIndicie = 0;
-	int previousLastIndicieUV = 0;
+
+    int previousLastVertex = 0;
+    int previousLastUV = 0;
+
     for (int j = 0; j < objectMeshes.size(); j++)
     {
-        if (objectMeshes[j]->verts.empty() || objectMeshes[j]->verts.data() == NULL)
+        glEnable(GL_TEXTURE_2D);
+        if(objectMeshes[j]->texture != 0)
+            glBindTexture(GL_TEXTURE_2D, (GLuint)objectMeshes[j]->texture);
+        else
+            glBindTexture(GL_TEXTURE_2D, 1);
+
+        glMaterialfv(GL_FRONT, GL_AMBIENT, &(objectMeshes[j]->matData->ambient.x));
+        glMaterialfv(GL_FRONT, GL_SPECULAR, &(objectMeshes[j]->matData->specular.x));
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, &(objectMeshes[j]->matData->diffuse.x));
+
+
+
+        if (objectMeshes[j]->verts.empty() || objectMeshes[j]->verts.data() == nullptr)
             continue;  // Skip empty mesh
 
         if (objectMeshes[j]->isQuadMesh)
@@ -44,37 +59,32 @@ void Renderer3D::RenderUpdate()
         else
             glBegin(GL_TRIANGLES);
 
-
         for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
         {
-            int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastIndicie;
-            int UVVertexIndicie = objectMeshes[j]->UVindicies[i] - 1 - previousLastIndicieUV;
+            int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastVertex;
+            int UVVertexIndicie = objectMeshes[j]->UVindicies[i] - 1 - previousLastUV;
 
             if (0 <= UVVertexIndicie && UVVertexIndicie < objectMeshes[j]->textureUVs.size())
             {
                 Vector2* UV = objectMeshes[j]->textureUVs[UVVertexIndicie];
-                glTexCoord2f(
-                    UV->x,
-                    UV->y
-                );
+                glTexCoord2f(UV->x, UV->y);
             }
 
             if (0 <= VertexIndicie && VertexIndicie < objectMeshes[j]->verts.size())
             {
                 Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
-                glVertex3f(
-                    vertex->x,
-                    vertex->y,
-                    vertex->z
-                );
+                glVertex3f(vertex->x, vertex->y, vertex->z);
             }
         }
 
         glEnd();
 
-        previousLastIndicie = objectMeshes[j]->indicies.size() - 1 ;
-        previousLastIndicieUV = objectMeshes[j]->UVindicies.size() - 1;
+        // Update previous last indices
+        previousLastVertex += objectMeshes[j]->verts.size();
+        previousLastUV += objectMeshes[j]->textureUVs.size();
     }
+
+
 
 }
 

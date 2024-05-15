@@ -2,6 +2,7 @@
 #include "GLObject.h"
 #include <iostream>
 
+
 struct Node {
 	//Start Node
 	Node(GLObject* object)
@@ -32,8 +33,6 @@ struct Node {
 	{
 		
 	}
-	
-
 	GLObject* data = nullptr;
 	Node* next = nullptr;
 	Node* last = nullptr;
@@ -41,7 +40,6 @@ struct Node {
 
 class LinkedList {
 	Node* head;
-
 
 	LinkedList(GLObject* headObject)
 	{
@@ -178,15 +176,14 @@ class LinkedList {
 		return node;
 	}
 
-
 	void DrawNodes(Node* node) {
 		
 		if (node->data->render3D != nullptr)
 			node->data->render3D->RenderUpdate();
 
+		if (node->data->graph != nullptr)
+			DrawNodes(node->data->graph->head);
+
 		if (node->next != nullptr) DrawNodes(node->next);
 	}
-
-
-
 };

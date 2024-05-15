@@ -12,7 +12,7 @@ class Sphere : public Object
 {
 public:
 	float Radius;
-	void Draw();
+	void Draw(Vector3 col);
 	InterReturn CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection);
 };
 

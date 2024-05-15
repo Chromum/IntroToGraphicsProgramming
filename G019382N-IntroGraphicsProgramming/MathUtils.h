@@ -2,6 +2,29 @@
 #include <cmath>
 #include <string>
 
+
+
+struct Vector4 
+{
+	Vector4() 
+	{
+		this->x = 0;
+		this->y = 0;
+		this->z = 0;
+		this->w = 0;
+	}
+
+	Vector4(float x, float y, float z, float w)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+		this->w = w;
+	}
+	float x, y, z, w;
+};
+
+
 struct Vector2 
 {
 	Vector2 operator-(Vector2 second) {

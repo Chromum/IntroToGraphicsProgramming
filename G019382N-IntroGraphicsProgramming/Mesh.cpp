@@ -1,4 +1,6 @@
+#pragma once
 #include "Mesh.h"
+#include "ModelLoader.h"
 
 void Mesh::AddVert(Vector3* v3)
 {
@@ -11,7 +13,6 @@ void Mesh::AddTextureUV(Vector2* v2)
 }
 
 Mesh::Mesh() {
-
 }
 
 Mesh::~Mesh()

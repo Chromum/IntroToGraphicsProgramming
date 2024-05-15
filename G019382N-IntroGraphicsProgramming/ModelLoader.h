@@ -1,6 +1,17 @@
 #pragma once
 #include "Mesh.h"
 #include <iostream>
+#include <map>
+
+struct Vector4;
+
+struct MaterialData {
+public:
+	std::map<std::string, int> textureList;
+	Vector4 ambient, diffuse, specular;
+	float opticalDensity;
+	void LoadMaterialFile(std::string fileName);
+};
 
 class ModelLoader
 {
