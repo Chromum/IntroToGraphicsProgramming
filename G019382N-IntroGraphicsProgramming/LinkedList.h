@@ -203,7 +203,7 @@ public:
 
 	std::vector<GLObject*> GetAllObjects(Node* current)
 	{
-		std::vector<GLObject*> objects = std::vector<GLObject*>();
+		std::vector<GLObject*> objects;
 
 		if (current == nullptr) {
 			// Base case: Reached the end of the list, object not found
@@ -215,30 +215,13 @@ public:
 			objects.push_back(q);
 		}
 
-		// Search within children (if any)
-		if (current->next != nullptr) {
-			if (current->next->data->graph != nullptr)
-			{
-				std::vector<GLObject*> toCombine = GetAllObjects(current->next->data->graph->head);
-				objects.insert(objects.end(), toCombine.begin(), toCombine.end());
-			}
-			
+		if (current->data->graph != nullptr)
+		{
+			std::vector<GLObject*> childern = current->data->graph->GetAllObjects(current->data->graph->head);
+			objects.insert(objects.end(), childern.begin(), childern.end());;
 		}
 
 		// Move to the next node
-		std::vector<GLObject*> toCombine = GetAllObjects(current->next);
-		objects.insert(objects.end(), toCombine.begin(), toCombine.end());
-	}
-
-
-
-
-	void UpdateNodes(Node* node) {
-		std::vector<GLObject*> all = this->GetAllObjects(head);
-
-		for (size_t i = 0; i < all.size(); i++)
-		{
-			all[i]->Update();
-		}
+		return GetAllObjects(current->next);
 	}
 };

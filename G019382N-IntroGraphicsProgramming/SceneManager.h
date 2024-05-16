@@ -34,12 +34,18 @@ public:
 	void CreateNewObject(SceneObject* object)
 	{
 		sceneGraph->AddChild(object);
+
+		if (GLObject* q = dynamic_cast<GLObject*>(object))
+			Renderables.push_back(q);
+
 		objectCount++;
 	}
 
 	void CreateNewObject(SceneObject* object, SceneObject* parent)
 	{
 		parent->AddChild(object);
+		if (GLObject* q = dynamic_cast<GLObject*>(object))
+			Renderables.push_back(q);
 		objectCount++;
 	}
 
@@ -74,6 +80,16 @@ public:
 	std::vector<GLObject*> GetAllObjects() 
 	{
 		return sceneGraph->graph->GetAllObjects(sceneGraph->graph->head);
+	}
+
+	std::vector<GLObject*> Renderables;
+
+	void Update() 
+	{
+		for (size_t i = 0; i < Renderables.size(); i++)
+		{
+			Renderables[i]->Update();
+		}
 	}
 
 	void SelectObject() {

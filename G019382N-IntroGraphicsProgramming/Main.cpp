@@ -127,7 +127,7 @@ void Main::Display()
 	//Vector3 rot = SceneManager::instance->FindObject("Plane")->Transform.Rotation;
 	//SceneManager::instance->FindObject("Plane")->Transform.Rotation = rot + Vector3(1, 1, 1);
 
-	SceneManager::instance->sceneGraph->graph->UpdateNodes(SceneManager::instance->sceneGraph->graph->head);
+	SceneManager::instance->Update();
 	displayEvent->FireEvent();
 
 	DrawHUD();
