@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "GLObject.h"
 #include "ModelLoader.h"
+#include "Camera.h"
 
 
 namespace GLUTCallbacks
@@ -31,7 +32,7 @@ namespace GLUTCallbacks
 		int updateTime = glutGet(GLUT_ELAPSED_TIME);
 		main->Update();
 		updateTime = glutGet(GLUT_ELAPSED_TIME) - updateTime;
-		glutTimerFunc(preferedRefresh - updateTime, GLUTCallbacks::Timer, preferedRefresh - updateTime);
+		glutTimerFunc(8 - updateTime, GLUTCallbacks::Timer, preferedRefresh - 8);
 		
 	}
 
@@ -57,33 +58,61 @@ namespace GLUTCallbacks
 	void MouseClick(int button, int state, int x, int y) 
 	{
 		Vector3 v3;
+
+
+
 		switch (button)
 		{
 		case GLUT_LEFT_BUTTON:
 
-			GLfloat viewMatrix[16];
-			glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
-
-			Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
-
-			InterReturn r = main->sphere->CheckIfIntersect(main->cameraTransform.Position, cf);
-
-			main->startPoint = main->cameraTransform.Position;
-			main->endPoint = cf * 10;
-
-
-			if (!r.result)
+			if (state == GLUT_UP)
 			{
-				std::cout << "Hit the sphere" << std::endl;
+				main->leftMouse = false;
 			}
+				
 			else
 			{
-				std::cout << "Missed the sphere" << std::endl;
+				main->leftMouse = true;
+			}
+			break;
+		case GLUT_RIGHT_BUTTON:
+			if (state == GLUT_UP)
+			{
+				main->rightMouse = false;
+				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 			}
 
+			else
+			{
+				main->rightMouse = true;
+				glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+				glutSetCursor(GLUT_CURSOR_NONE);
+			}
+			break;
+				
+
+			//GLfloat viewMatrix[16];
+			//glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
+
+			//Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
+
+			//InterReturn r = main->sphere->CheckIfIntersect(Camera::instance->Transform.Position, cf);
+
+			//main->startPoint = Camera::instance->Transform.Position;
+			//main->endPoint = cf * 10;
 
 
-			main->leftMouse = !main->leftMouse;
+			//if (!r.result)
+			//{
+			//	std::cout << "Hit the sphere" << std::endl;
+			//}
+			//else
+			//{
+			//	std::cout << "Missed the sphere" << std::endl;
+			//}
+
+
+
 			break;
 		}
 
@@ -92,7 +121,7 @@ namespace GLUTCallbacks
 
 	void MouseMove(int x, int y) {
 		static bool firstTime = true;
-		static Vector2 mouseLastFrame = Vector2(main->screenWidth/2, main->screenHeight/2);
+		static Vector2 mouseLastFrame = Vector2(main->screenWidth / 2, main->screenHeight / 2);
 		Vector2 mouseCurrentFrame = Vector2(x, y);
 
 		if (firstTime) {
@@ -101,50 +130,52 @@ namespace GLUTCallbacks
 			firstTime = false;
 		}
 
-		float xOffset = mouseCurrentFrame.x - mouseLastFrame.x;
-		float yOffset = mouseCurrentFrame.y - mouseLastFrame.y;
-		mouseLastFrame = mouseCurrentFrame;
-
-		float sens = 0.1f;
-
-		xOffset *= sens;
-		yOffset *= sens;
-
-		static float pitch;
-		static float yaw = -90;
-
-		pitch -= yOffset;
-		yaw += xOffset;
-
-		main->pitch = pitch;
-		main->yaw = yaw;
-
-
-		if (pitch > 89.0f)
-			pitch = 89.0f;
-		if (pitch < -89.0f)
-			pitch = -89.0f;
-
-		main->cameraTransform.Rotation.x = (cos(ToRad(yaw)) * cos(ToRad(pitch)));
-		main->cameraTransform.Rotation.y = sin(ToRad(pitch));
-		main->cameraTransform.Rotation.z = (sin(ToRad(yaw)) * cos(ToRad(pitch)));
-		main->cameraFront = main->cameraTransform.Rotation.Normilized();
-
-		
-
-		if (mouseCurrentFrame.x < 100 || x > GLUT_SCREEN_WIDTH - 100)
+		if (main->rightMouse)
 		{
-			mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
-			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
-			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+			std::cout << "MOUSE!!";
+			float xOffset = mouseCurrentFrame.x - mouseLastFrame.x;
+			float yOffset = mouseCurrentFrame.y - mouseLastFrame.y;
+			mouseLastFrame = mouseCurrentFrame;
+
+			float sens = 0.1f;
+
+			xOffset *= sens;
+			yOffset *= sens;
+
+			static float pitch;
+			static float yaw = -90;
+
+			pitch -= yOffset;
+			yaw += xOffset;
+
+
+			if (pitch > 89.0f)
+				pitch = 89.0f;
+			if (pitch < -89.0f)
+				pitch = -89.0f;
+
+			Camera::instance->pitch = pitch;
+			Camera::instance->yaw = yaw;
+
+			Camera::instance->Transform.Rotation = Vector3((cos(ToRad(yaw)) * cos(ToRad(pitch))),
+				sin(ToRad(pitch)), (sin(ToRad(yaw)) * cos(ToRad(pitch))));
+			Camera::instance->cameraForward = Camera::instance->Transform.Rotation.Normilized();
+
+
+
+			if (mouseCurrentFrame.x < 100 || x > GLUT_SCREEN_WIDTH - 100)
+			{
+				mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
+				mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
+				glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+			}
+			else if (y < 100 || y > GLUT_SCREEN_HEIGHT - 100)
+			{
+				mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
+				mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
+				glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
+			}
 		}
-		else if (y < 100 || y > GLUT_SCREEN_HEIGHT - 100)
-		{
-			mouseLastFrame.x = GLUT_SCREEN_WIDTH / 2;
-			mouseLastFrame.y = GLUT_SCREEN_HEIGHT / 2;
-			glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
-		}
-		
 	}
 
 

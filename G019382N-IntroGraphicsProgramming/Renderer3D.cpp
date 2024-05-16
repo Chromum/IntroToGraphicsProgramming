@@ -27,6 +27,16 @@ void Renderer3D::RenderUpdate()
     glMatrixMode(GL_MODELVIEW);
     glColor3f(1,1,1);
 	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
+
+    if (object->Transform.Rotation.x >= 360.0f)
+        object->Transform.Rotation.x = 0.0f;
+
+    if (object->Transform.Rotation.y >= 360.0f)
+        object->Transform.Rotation.y = 0.0f;
+
+    if (object->Transform.Rotation.z >= 360.0f)
+        object->Transform.Rotation.z = 0.0f;
+
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
@@ -44,7 +54,7 @@ void Renderer3D::RenderUpdate()
         if(objectMeshes[j]->texture != 0)
             glBindTexture(GL_TEXTURE_2D, (GLuint)objectMeshes[j]->texture);
         else
-            glBindTexture(GL_TEXTURE_2D, 1);
+            glBindTexture(GL_TEXTURE_2D, 2);
 
         glMaterialfv(GL_FRONT, GL_AMBIENT, &(objectMeshes[j]->matData->ambient.x));
         glMaterialfv(GL_FRONT, GL_SPECULAR, &(objectMeshes[j]->matData->specular.x));

@@ -1,16 +1,17 @@
 #pragma once
-#include "GLObject.h"
 #include <iostream>
-
+#include <vector>
+//#include "SceneObject.h"
+#include "GLObject.h"
 
 struct Node {
 	//Start Node
-	Node(GLObject* object)
+	Node(SceneObject* object)
 	{
 		this->data = object;
 	}
 	//Adding to end
-	Node(Node* last, GLObject* data)
+	Node(Node* last, SceneObject* data)
 	{
 		this->next = nullptr;
 		this->last = last;
@@ -19,7 +20,7 @@ struct Node {
 		last->next = this;
 	}
 	//Implicing within
-	Node(Node* last, Node* next, GLObject* data)
+	Node(Node* last, Node* next, SceneObject* data)
 	{
 		last->next = this;
 		next->last = this;
@@ -33,29 +34,30 @@ struct Node {
 	{
 		
 	}
-	GLObject* data = nullptr;
+	SceneObject* data = nullptr;
 	Node* next = nullptr;
 	Node* last = nullptr;
 };
 
 class LinkedList {
+public:
 	Node* head;
 
-	LinkedList(GLObject* headObject)
+	LinkedList(SceneObject* headObject)
 	{
 		head = new Node(headObject);
 	}
 
-	void AddAtBegining(GLObject* object) {
+	void AddAtBegining(SceneObject* object) {
 		Node* node = new Node(object);
 		head->last = node;
 		node->next = head;
 	}
 
-	void AddNodeToEnd(GLObject* object)
+	void AddNodeToEnd(SceneObject* object)
 	{
 		Node* i = head;
-		while (i != nullptr)
+		while (i->next != nullptr)
 		{
 			i = i->next;
 		}
@@ -63,7 +65,7 @@ class LinkedList {
 		Node* newNode = new Node(i, object);
 	}
 
-	void AddNodeAtIndex(GLObject* object, int desiredIndex)
+	void AddNodeAtIndex(SceneObject* object, int desiredIndex)
 	{
 		int index = 0;
 		Node* currNode = head;
@@ -85,7 +87,7 @@ class LinkedList {
 
 	}
 
-	void AddNodeAtNodeReference(GLObject* object, Node* desiredNode)
+	void AddNodeAtNodeReference(SceneObject* object, Node* desiredNode)
 	{
 		Node* currNode = head;
 
@@ -176,14 +178,67 @@ class LinkedList {
 		return node;
 	}
 
-	void DrawNodes(Node* node) {
-		
-		if (node->data->render3D != nullptr)
-			node->data->render3D->RenderUpdate();
+	SceneObject* GetObjectByName(const std::string& desiredName, Node* current) {
+		if (current == nullptr) {
+			// Base case: Reached the end of the list, object not found
+			return nullptr;
+		}
 
-		if (node->data->graph != nullptr)
-			DrawNodes(node->data->graph->head);
+		if (current->data->name == desiredName) {
+			// Found the object with the specified name
+			return current->data;
+		}
 
-		if (node->next != nullptr) DrawNodes(node->next);
+		// Search within children (if any)
+		if (current->next->data->graph != nullptr) {
+			SceneObject* childObject = GetObjectByName(desiredName, current->next->data->graph->head);
+			if (childObject != nullptr) {
+				return childObject; // Found in children
+			}
+		}
+
+		// Move to the next node
+		return GetObjectByName(desiredName, current->next);
+	}
+
+	std::vector<GLObject*> GetAllObjects(Node* current)
+	{
+		std::vector<GLObject*> objects = std::vector<GLObject*>();
+
+		if (current == nullptr) {
+			// Base case: Reached the end of the list, object not found
+			return objects;
+		}
+
+		if (GLObject* q = dynamic_cast<GLObject*>(current->data)) {
+			// Found the object with the specified name
+			objects.push_back(q);
+		}
+
+		// Search within children (if any)
+		if (current->next != nullptr) {
+			if (current->next->data->graph != nullptr)
+			{
+				std::vector<GLObject*> toCombine = GetAllObjects(current->next->data->graph->head);
+				objects.insert(objects.end(), toCombine.begin(), toCombine.end());
+			}
+			
+		}
+
+		// Move to the next node
+		std::vector<GLObject*> toCombine = GetAllObjects(current->next);
+		objects.insert(objects.end(), toCombine.begin(), toCombine.end());
+	}
+
+
+
+
+	void UpdateNodes(Node* node) {
+		std::vector<GLObject*> all = this->GetAllObjects(head);
+
+		for (size_t i = 0; i < all.size(); i++)
+		{
+			all[i]->Update();
+		}
 	}
 };

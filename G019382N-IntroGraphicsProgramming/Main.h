@@ -35,16 +35,13 @@ public:
 	void KeyboardDown(unsigned char key, int x, int y);
 	void KeyboardUp(unsigned char key, int x, int y);
 	void HandleInput();
-	void ReBuildProjectionMatrix();
 	void drawLine(Vector3 startPoint, Vector3 endPoint);
 	void DrawTextAtPos(const char* text, Vector2 pos);
 	void DrawHUD();
+	void DrawControlUI();
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");
-
-	//TestObject
-	vector<GLObject*> objects;
 
 	//Input
 	Vector2 mouseDelta = Vector2(0,0);
@@ -56,12 +53,8 @@ public:
 	int screenWidth;
 	int screenHeight;
 
-	Transform cameraTransform;
-	Vector3 cameraFront;
 	Vector3 inputVector = Vector3(0,0,0);
 
-	float pitch;
-	float yaw;
 	Sphere* sphere;
 
 

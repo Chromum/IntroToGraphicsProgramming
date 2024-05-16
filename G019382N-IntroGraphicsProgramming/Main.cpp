@@ -7,11 +7,11 @@
 #include "Sphere.h"
 #include "LightingManager.h"
 #include <chrono>
+#include "Camera.h"
+#include "LinkedList.h"
+#include "SceneManager.h"
 
-
-Vector3 atVector = Vector3(0, 0, 0);
-Vector3 lookDirection = Vector3(0, 0, 0);
-Vector3 forwardDirection = Vector3(0, 0, 0);
+SceneObject* rootLevelObject;
 
 int main(int argc, char* argv[])
 {
@@ -22,12 +22,11 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+GLObject* obj11;
+
 //Construct
 Main::Main(int argc, char* argv[])
 {
-	rotationX = 0.0f;
-	rotationY = 0.0f;
-	rotationZ = 0.0f;
 	std::fill_n(buffer, 256, false);
 	displayEvent = new EventHandler("Display");
 	glutInit(&argc, argv);
@@ -40,19 +39,17 @@ Main::Main(int argc, char* argv[])
 	GLUTCallbacks::Init(this);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display);
-	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
+	glutTimerFunc(8, GLUTCallbacks::Timer, 8);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glutKeyboardFunc(GLUTCallbacks::KeyboardKeyDown);
 	glutKeyboardUpFunc(GLUTCallbacks::KeyboardKeyUp);
 	glutMouseFunc(GLUTCallbacks::MouseClick);
-	glutPassiveMotionFunc(GLUTCallbacks::MouseMove);
+	glutMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
-	//glutSetCursor(GLUT_CURSOR_NONE);
-	//glutFullScreen();
+	glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	//ReBuildProjectionMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
@@ -62,25 +59,31 @@ Main::Main(int argc, char* argv[])
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
+	SceneManager();
+	Camera* cam = new Camera("Camera");
+	SceneManager::instance->CreateNewObject(cam);
+	
+
+
 
 	ModelLoader ml = ModelLoader();
 	int i = ImageReader().ReadImage("Models/Untitled.png");
 
-
 	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/Model1.obj");
+	std::vector<Mesh*> meshes3 = ml.LoadMeshAtPath("Models/plane.obj");
 	std::vector<Mesh*> meshes2 = ml.LoadMeshAtPath("Models/SkyboxCube.obj");
-	sphere = new Sphere();
-	sphere->Transform.Scale = Vector3(1, 1, 1);
 
-	GLObject* obj1 = new GLObject(Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent);
-	GLObject* obj10 = new GLObject(Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent);
+	GLObject* obj1 = new GLObject("Test Model", Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1);
+	GLObject* obj10 = new GLObject("Skybox", Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent,1);
+	obj11 = new GLObject("Plane", Vector3(0,0,0), Vector3(1, 1, 1), meshes3, displayEvent,5);
+	SceneManager::instance->skyboxId1 = obj10->render3D->objectMeshes[0]->texture;
 
+	SceneManager::instance->CreateNewObject(obj11);
+	SceneManager::instance->CreateNewObject(obj10);
+	SceneManager::instance->CreateNewObject(obj1,obj10);
 
-	objects.push_back(obj1);
-	//objects.push_back(obj2);
-	//objects.push_back(obj3);
-	objects.push_back(obj10);
-
+	std::string name = SceneManager::instance->FindObject("Test Model")->name;
+	std::cout << name;
 
 	LightingManager();
 	LightingManager::instance->AddLight(
@@ -93,56 +96,59 @@ Main::Main(int argc, char* argv[])
 	glutMainLoop();
 }
 
+
+
 //Deconstruct
 Main::~Main(void)
 {
 }
 
-int PrevTime = 0;
+// Global variables
+int frameCount = 0;
+int currentTime = 0;
+int previousTime = 0;
+int fps;
 
 void Main::Update()
 {
-	const int numFrames = 100;
-	double fps = 0.0;
-
-	auto startTime = std::chrono::high_resolution_clock::now();;
-
-
-
-
-	DrawTextAtPos(std::to_string(fps).c_str(), Vector2(100, 125));
-
-
 	glutPostRedisplay();
 	HandleInput();	
-
-
-	PrevTime = currentTime;
 }
 
 void Main::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	ReBuildProjectionMatrix();
+	frameCount++;
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	Camera::instance->Update();
 
 	drawLine(startPoint, endPoint);
-	sphere->Draw(Vector3());
+
+	//Vector3 rot = SceneManager::instance->FindObject("Plane")->Transform.Rotation;
+	//SceneManager::instance->FindObject("Plane")->Transform.Rotation = rot + Vector3(1, 1, 1);
+
+	SceneManager::instance->sceneGraph->graph->UpdateNodes(SceneManager::instance->sceneGraph->graph->head);
 	displayEvent->FireEvent();
 
 	DrawHUD();
-	LightingManager::instance->RenderAllLights();
 
+	LightingManager::instance->RenderAllLights();
 	glFlush();
 	glutSwapBuffers();
-
 }
 
 void Main::KeyboardDown(unsigned char key, int x, int y)
 {
 
 	buffer[key] = true;
-	std::cout << key << endl;
+	if(key == 'm')
+		SceneManager::instance->ToggleSkyboxTexture();
+	if (key == 'n')
+		SceneManager::instance->ToggleWireFrame();
+
+	if (key == 27)
+		SceneManager::instance->ToggleControls();
+
 }
 
 void Main::KeyboardUp(unsigned char key, int x, int y)
@@ -152,60 +158,29 @@ void Main::KeyboardUp(unsigned char key, int x, int y)
 
 void Main::HandleInput()
 {
-
-
-	if (buffer[(int)'0'] == true)
-		objects[0]->Transform.Position.x += 0.05f;
-	if (buffer[(int)'1'] == true)
-		objects[0]->Transform.Position.x -= 0.05f;
-
-	if (buffer[(int)'l'] == true)
-		objects[0]->Transform.Position.y += 0.05f;
-	if (buffer[(int)'k'] == true)
-		objects[0]->Transform.Position.y -= 0.05f;
-
-	if (buffer[(int)'3'] == true)
-		objects[0]->Transform.Position.z += 0.05f;
-	if (buffer[(int)'8'] == true)
-		objects[0]->Transform.Position.z -= 0.05f;
-
 	if (buffer[(int)'w'])
 	{
-		cameraTransform.Position = cameraTransform.Position + cameraFront * 1;
+		Camera::instance->Transform.Position = Camera::instance->Transform.Position + Camera::instance->cameraForward * 1;
 	}
 	if (buffer[(int)'s'])
 	{
-		cameraTransform.Position = cameraTransform.Position - cameraFront * 1;
+		Camera::instance->Transform.Position = Camera::instance->Transform.Position - Camera::instance->cameraForward * 1;
 	}
 
 	if (buffer[(int)'a'])
 	{
-		Vector3 rVec = Vector3(0, 1, 0).Cross(cameraFront).Normilized();
-		cameraTransform.Position = cameraTransform.Position + rVec * 1;
+		Vector3 rVec = Vector3(0, 1, 0).Cross(Camera::instance->cameraForward).Normilized();
+		Camera::instance->Transform.Position = Camera::instance->Transform.Position + rVec * 1;
 	}
 	if (buffer[(int)'d'])
 	{
-		Vector3 rVec = Vector3(0, 1, 0).Cross(cameraFront).Normilized();
-		cameraTransform.Position = cameraTransform.Position - rVec * 1;
+		Vector3 rVec = Vector3(0, 1, 0).Cross(Camera::instance->cameraForward).Normilized();
+		Camera::instance->Transform.Position = Camera::instance->Transform.Position - rVec * 1;
 	}
 
-	static bool wireFrame = false;
-	if (buffer[(int)'o'] == true) 
-	{
-		if (wireFrame)
-		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			wireFrame = false;
-		}
-		else 
-		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-			wireFrame = true;
-		}
-	}
-	
+	if (buffer[(int)'u'])
+		obj11->Transform.Position.x += 1;
 
-	
 	return;
 }
 
@@ -239,7 +214,25 @@ void Main::DrawHUD()
 	}
 	glEnd();
 
-	DrawTextAtPos(("Object Count: " + std::to_string(objects.size())).c_str(), Vector2(100, 125));
+	DrawTextAtPos(("Object Count: " + std::to_string(SceneManager::instance->objectCount)).c_str(), Vector2(100, 125));
+
+	// Calculate elapsed time
+	currentTime = glutGet(GLUT_ELAPSED_TIME);
+	int elapsedTime = currentTime - previousTime;
+
+	// Update FPS every second
+	if (elapsedTime > 1000) {
+		fps = static_cast<int>(frameCount) / (elapsedTime / 1000.0f);
+
+		// Reset counters
+		frameCount = 0;
+		previousTime = currentTime;
+	}
+	DrawTextAtPos(("FPS: " + std::to_string(fps)).c_str(), Vector2(100, 100));
+
+	if(SceneManager::instance->showControls)
+		DrawControlUI();
+
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
@@ -249,6 +242,18 @@ void Main::DrawHUD()
 	glEnable(GL_LIGHT0);
 }
 
+void Main::DrawControlUI()
+{
+	DrawTextAtPos("M - Change Skybox", Vector2(25, 500));
+	DrawTextAtPos("WASD - Move", Vector2(25, 525));
+	DrawTextAtPos("Right Click - Unlock Free-Cam", Vector2(25, 550));
+	DrawTextAtPos("N - Toggle Wireframe", Vector2(25, 575));
+	DrawTextAtPos("Left Click - Select Object", Vector2(25, 600));
+	DrawTextAtPos("F - Focus Object", Vector2(25, 625));
+	DrawTextAtPos("ESC - Show Controls", Vector2(25, 650));
+	DrawTextAtPos("B - Toggle Selection Spheres", Vector2(25, 675));
+}
+
 void Main::DrawTextAtPos(const char* text, Vector2 pos) {
 	glPushMatrix();
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -256,32 +261,6 @@ void Main::DrawTextAtPos(const char* text, Vector2 pos) {
 	glRasterPos2f(pos.x,pos.y);
 	glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
 	glPopMatrix();
-}
-
-void Main::ReBuildProjectionMatrix() 
-{
-	Vector3 cameraUp = Vector3(0.0f, 1.0f, 0.0f);
-	Vector3 lookat_point = cameraFront + cameraTransform.Position;
-
-
-	glMatrixMode(GL_MODELVIEW);
-	{
-		glLoadIdentity();
-		gluLookAt(
-			cameraTransform.Position.x,
-			cameraTransform.Position.y,
-			cameraTransform.Position.z,
-
-			lookat_point.x,
-			lookat_point.y,
-			lookat_point.z,
-
-			cameraUp.x,
-			cameraUp.y,
-			cameraUp.z);
-	}
-
-	glutPostRedisplay();
 }
 
 

@@ -1,22 +1,22 @@
 #include "Sphere.h"
+//#include <gl/GL.h>
+#include "GLObject.h"
 
-void Sphere::Draw(Vector3 col) //https://antongerdelan.net/opengl/raycasting.html
+void Sphere::Draw(Vector3 col) 
 {
-	this->Radius = (this->Transform.Scale.Magnitude());
-
+	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
+	glTranslatef(this->parent->Transform.Position.x, this->parent->Transform.Position.y, this->parent->Transform.Position.z);
 	glColor3f(col.x, col.y, col.z);
-	glTranslatef(this->Transform.Position.x, this->Transform.Position.y, this->Transform.Position.z);
 	glutWireSphere(this->Radius,16,16);
 	glPopMatrix();
-
 }
 
 InterReturn Sphere::CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection)
 {
 	InterReturn r = InterReturn();
 
-	Vector3 L = this->Transform.Position - rayStart;
+	Vector3 L = this->parent->Transform.Position - rayStart;
 	float tC = L.Dot(rayDirection);
 	if (tC < 0) {
 		r.result = false;

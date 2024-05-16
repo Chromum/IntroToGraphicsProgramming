@@ -1,5 +1,37 @@
-﻿  Main.cpp
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(89,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(107,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  Camera.cpp
+  Collider.cpp
+  EventHandler.cpp
+  GL2D.cpp
+  GL3D.cpp
+  GLObject.cpp
+  GLUTCallbacks.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(124,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(124,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(125,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(125,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(128,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(129,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  ImageReader.cpp
+  LightingManager.cpp
+  Main.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(93,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(225,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  MathUtils.cpp
+  Mesh.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Mesh.cpp(25,20): warning C4018: '<': signed/unsigned mismatch
+  ModelLoader.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(186,23): warning C4018: '<': signed/unsigned mismatch
+  Renderer3D.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(51,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(73,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(79,53): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(85,57): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(91,53): warning C4018: '<': signed/unsigned mismatch
+  SceneObject.cpp
+  Sphere.cpp
+  SphereCollider.cpp
+  Generating Code...
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\LinkedList.h(231): warning C4715: 'LinkedList::GetAllObjects': not all control paths return a value
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

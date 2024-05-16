@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "MathUtils.h"
 
 struct InterReturn {
 	bool result;
@@ -7,10 +7,17 @@ struct InterReturn {
 	Vector3 v2;
 };
 
+class GLObject;
 
-class Sphere : public Object
+
+class Sphere
 {
 public:
+	Sphere(float Rad, GLObject* par) {
+		Radius = Rad;
+		parent = par;
+	}
+	GLObject* parent;
 	float Radius;
 	void Draw(Vector3 col);
 	InterReturn CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection);
