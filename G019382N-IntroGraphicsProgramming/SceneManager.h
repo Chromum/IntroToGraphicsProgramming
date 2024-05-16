@@ -2,6 +2,7 @@
 #include "LinkedList.h"
 #include <iostream>
 #include "ImageReader.h"
+#include "Camera.h"
 
 class SceneManager {
 public:
@@ -13,6 +14,7 @@ public:
 	bool showSelectionSpheres;
 	bool showControls;
 	int skyboxId1, skyboxId2;
+	std::vector<GLObject*> Renderables;
 
 	SceneManager() {
 		if (instance == nullptr)
@@ -22,6 +24,7 @@ public:
 			sceneGraph->graph = new LinkedList(sceneGraph);
 			objectCount++;
 			skyboxId2 = ImageReader().ReadImage("Models/skybox_texture2.png");
+
 		}
 		else
 			delete(this);
@@ -82,8 +85,6 @@ public:
 		return sceneGraph->graph->GetAllObjects(sceneGraph->graph->head);
 	}
 
-	std::vector<GLObject*> Renderables;
-
 	void Update() 
 	{
 		for (size_t i = 0; i < Renderables.size(); i++)
@@ -92,30 +93,29 @@ public:
 		}
 	}
 
-	void SelectObject() {
+	std::pair<Vector3,Vector3> SelectObject() {
+		GLfloat viewMatrix[16];
+		glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
+
+		Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
+
+		for (size_t i = 0; i < this->Renderables.size(); i++)
+		{
+			InterReturn r = this->Renderables[i]->selectionSphere->CheckIfIntersect(Camera::instance->Transform.Position, cf);
+			if (r.result)
+			{
+				std::cout << "Hit the sphere:" << this->Renderables[i]->name << std::endl;
+			}
+			else
+			{
+				std::cout << "Missed the sphere:" << this->Renderables[i]->name << std::endl;
+			}
+		}
+
+		return std::pair<Vector3, Vector3>(Camera::instance->Transform.Position, cf * 100);
+
+		
 
 
-		//GLfloat viewMatrix[16];
-		//glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
-
-		//Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
-
-		////for (size_t i = 0; i < length; i++)
-		////{
-
-		////}
-
-		////InterReturn r = main->sphere->CheckIfIntersect(Camera::instance->Transform.Position, cf);
-
-		//if (!r.result)
-		//{
-		//	std::cout << "Hit the sphere" << std::endl;
-		//}
-		//else
-		//{
-		//	std::cout << "Missed the sphere" << std::endl;
-		//}
 	}
 };
-
-SceneManager* SceneManager::instance;

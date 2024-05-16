@@ -13,6 +13,9 @@
 #include <iostream>
 #include "EventHandler.h"
 #include <vector>
+#include "SceneManager.h"
+#include "Camera.h"
+#include "LinkedList.h"
 
 class Sphere;
 
@@ -39,6 +42,7 @@ public:
 	void DrawTextAtPos(const char* text, Vector2 pos);
 	void DrawHUD();
 	void DrawControlUI();
+	void SelectObject();
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");

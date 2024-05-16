@@ -1,8 +1,2 @@
-﻿  Main.cpp
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(93,29): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(225,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  SceneObject.cpp
-  Generating Code...
-  LINK : C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe not found or not built by the last incremental link; performing full link
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  Sphere.cpp
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

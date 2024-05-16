@@ -1,0 +1,35 @@
+﻿  Camera.cpp
+  GLObject.cpp
+  GLUTCallbacks.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(104,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(105,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  LightingManager.cpp
+  Main.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(93,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(223,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  MathUtils.cpp
+  Mesh.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Mesh.cpp(25,20): warning C4018: '<': signed/unsigned mismatch
+  ModelLoader.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(186,23): warning C4018: '<': signed/unsigned mismatch
+  Renderer3D.cpp
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(51,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(73,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(79,53): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(85,57): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(91,53): warning C4018: '<': signed/unsigned mismatch
+  SceneManager.cpp
+  SceneObject.cpp
+  Sphere.cpp
+  Generating code
+  2 of 1098 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    21 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\Release\G019382N-IntroGraphicsProgramming.exe

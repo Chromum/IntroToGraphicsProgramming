@@ -7,9 +7,6 @@
 #include "Sphere.h"
 #include "LightingManager.h"
 #include <chrono>
-#include "Camera.h"
-#include "LinkedList.h"
-#include "SceneManager.h"
 
 SceneObject* rootLevelObject;
 
@@ -48,7 +45,7 @@ Main::Main(int argc, char* argv[])
 	glutMouseFunc(GLUTCallbacks::MouseClick);
 	glutMotionFunc(GLUTCallbacks::MouseMove);
 	glutReshapeFunc(GLUTCallbacks::OnWindowResize);
-	glutFullScreen();
+	//glutFullScreen();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -60,6 +57,7 @@ Main::Main(int argc, char* argv[])
 	glLoadIdentity();
 	
 	SceneManager();
+	SceneManager::instance->Renderables = std::vector<GLObject*>();
 	Camera* cam = new Camera("Camera");
 	SceneManager::instance->CreateNewObject(cam);
 	
@@ -75,8 +73,10 @@ Main::Main(int argc, char* argv[])
 
 	GLObject* obj1 = new GLObject("Test Model", Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1);
 	GLObject* obj10 = new GLObject("Skybox", Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent,1);
-	obj11 = new GLObject("Plane", Vector3(0,0,0), Vector3(1, 1, 1), meshes3, displayEvent,5);
+	GLObject* obj11 = new GLObject("Plane", Vector3(0,0,0), Vector3(1, 1, 1), meshes3, displayEvent,5);
 	SceneManager::instance->skyboxId1 = obj10->render3D->objectMeshes[0]->texture;
+
+	SceneManager::instance->Renderables = std::vector<GLObject*>();
 
 	SceneManager::instance->CreateNewObject(obj11);
 	SceneManager::instance->CreateNewObject(obj10);
@@ -126,8 +126,6 @@ void Main::Display()
 
 	//Vector3 rot = SceneManager::instance->FindObject("Plane")->Transform.Rotation;
 	//SceneManager::instance->FindObject("Plane")->Transform.Rotation = rot + Vector3(1, 1, 1);
-
-	SceneManager::instance->Update();
 	displayEvent->FireEvent();
 
 	DrawHUD();
@@ -179,7 +177,7 @@ void Main::HandleInput()
 	}
 
 	if (buffer[(int)'u'])
-		obj11->Transform.Position.x += 1;
+		SceneManager::instance->Renderables[0]->Transform.Position.x += 1;
 
 	return;
 }
@@ -261,6 +259,14 @@ void Main::DrawTextAtPos(const char* text, Vector2 pos) {
 	glRasterPos2f(pos.x,pos.y);
 	glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
 	glPopMatrix();
+}
+
+void Main::SelectObject() {
+	std::pair<Vector3,Vector3> e = SceneManager::instance->SelectObject();
+
+	startPoint = e.first;
+	endPoint = e.second;
+
 }
 
 

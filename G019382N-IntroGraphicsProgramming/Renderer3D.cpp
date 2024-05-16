@@ -26,8 +26,8 @@ void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
     glColor3f(1,1,1);
+    object->selectionSphere->Draw(Vector3(1, 1, 1));
 	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
-
     if (object->Transform.Rotation.x >= 360.0f)
         object->Transform.Rotation.x = 0.0f;
 

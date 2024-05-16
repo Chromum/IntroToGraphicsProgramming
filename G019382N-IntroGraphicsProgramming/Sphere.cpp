@@ -6,6 +6,7 @@ void Sphere::Draw(Vector3 col)
 {
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
+	
 	glTranslatef(this->parent->Transform.Position.x, this->parent->Transform.Position.y, this->parent->Transform.Position.z);
 	glColor3f(col.x, col.y, col.z);
 	glutWireSphere(this->Radius,16,16);

@@ -73,6 +73,7 @@ namespace GLUTCallbacks
 			else
 			{
 				main->leftMouse = true;
+				main->SelectObject();
 			}
 			break;
 		case GLUT_RIGHT_BUTTON:
@@ -88,31 +89,6 @@ namespace GLUTCallbacks
 				glutWarpPointer(GLUT_SCREEN_WIDTH / 2, GLUT_SCREEN_HEIGHT / 2);
 				glutSetCursor(GLUT_CURSOR_NONE);
 			}
-			break;
-				
-
-			//GLfloat viewMatrix[16];
-			//glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
-
-			//Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
-
-			//InterReturn r = main->sphere->CheckIfIntersect(Camera::instance->Transform.Position, cf);
-
-			//main->startPoint = Camera::instance->Transform.Position;
-			//main->endPoint = cf * 10;
-
-
-			//if (!r.result)
-			//{
-			//	std::cout << "Hit the sphere" << std::endl;
-			//}
-			//else
-			//{
-			//	std::cout << "Missed the sphere" << std::endl;
-			//}
-
-
-
 			break;
 		}
 
@@ -132,7 +108,6 @@ namespace GLUTCallbacks
 
 		if (main->rightMouse)
 		{
-			std::cout << "MOUSE!!";
 			float xOffset = mouseCurrentFrame.x - mouseLastFrame.x;
 			float yOffset = mouseCurrentFrame.y - mouseLastFrame.y;
 			mouseLastFrame = mouseCurrentFrame;
