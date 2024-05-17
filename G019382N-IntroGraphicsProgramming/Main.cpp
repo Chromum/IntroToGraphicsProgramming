@@ -73,14 +73,14 @@ Main::Main(int argc, char* argv[])
 
 	GLObject* obj1 = new GLObject("Test Model", Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1);
 	GLObject* obj10 = new GLObject("Skybox", Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent,1);
-	GLObject* obj11 = new GLObject("Plane", Vector3(0,0,0), Vector3(1, 1, 1), meshes3, displayEvent,5);
+	GLObject* obj11 = new GLObject("Plane", Vector3(0,10,0), Vector3(1, 1, 1), meshes3, displayEvent,1);
 	SceneManager::instance->skyboxId1 = obj10->render3D->objectMeshes[0]->texture;
 
 	SceneManager::instance->Renderables = std::vector<GLObject*>();
 
 	SceneManager::instance->CreateNewObject(obj11);
 	SceneManager::instance->CreateNewObject(obj10);
-	SceneManager::instance->CreateNewObject(obj1,obj10);
+	SceneManager::instance->CreateNewObject(obj1);
 
 	std::string name = SceneManager::instance->FindObject("Test Model")->name;
 	std::cout << name;
@@ -261,8 +261,8 @@ void Main::DrawTextAtPos(const char* text, Vector2 pos) {
 	glPopMatrix();
 }
 
-void Main::SelectObject() {
-	std::pair<Vector3,Vector3> e = SceneManager::instance->SelectObject();
+void Main::SelectObject(float x, float y) {
+	std::pair<Vector3,Vector3> e = SceneManager::instance->SelectObject(x,y);
 
 	startPoint = e.first;
 	endPoint = e.second;

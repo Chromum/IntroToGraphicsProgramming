@@ -93,11 +93,9 @@ public:
 		}
 	}
 
-	std::pair<Vector3,Vector3> SelectObject() {
-		GLfloat viewMatrix[16];
-		glGetFloatv(GL_MODELVIEW_MATRIX, viewMatrix);
+	std::pair<Vector3,Vector3> SelectObject(float x, float y) {
 
-		Vector3 cf = Vector3(-viewMatrix[2], -viewMatrix[6], -viewMatrix[10]);
+		Vector3 cf = (Camera::instance->lookat_point - Camera::instance->Transform.Position).Normilized();
 
 		for (size_t i = 0; i < this->Renderables.size(); i++)
 		{
@@ -108,7 +106,6 @@ public:
 			}
 			else
 			{
-				std::cout << "Missed the sphere:" << this->Renderables[i]->name << std::endl;
 			}
 		}
 

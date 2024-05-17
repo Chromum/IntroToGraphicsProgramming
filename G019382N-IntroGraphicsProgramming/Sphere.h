@@ -17,6 +17,7 @@ public:
 		Radius = Rad;
 		parent = par;
 	}
+	Transform t;
 	GLObject* parent;
 	float Radius;
 	void Draw(Vector3 col);

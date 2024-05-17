@@ -42,7 +42,7 @@ public:
 	void DrawTextAtPos(const char* text, Vector2 pos);
 	void DrawHUD();
 	void DrawControlUI();
-	void SelectObject();
+	void SelectObject(float x, float y);
 	
 	//Event Handlers
 	EventHandler* displayEvent = new EventHandler("Display");

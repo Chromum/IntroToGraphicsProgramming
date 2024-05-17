@@ -73,7 +73,7 @@ namespace GLUTCallbacks
 			else
 			{
 				main->leftMouse = true;
-				main->SelectObject();
+				main->SelectObject(x,y);
 			}
 			break;
 		case GLUT_RIGHT_BUTTON:

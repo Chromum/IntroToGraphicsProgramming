@@ -104,7 +104,7 @@ void Renderer3D::RenderUpdate()
     }
 
 
-
+    object->selectionSphere->t = this->object->Transform;
 }
 
 void Renderer3D::SetTexture(GLuint image)
