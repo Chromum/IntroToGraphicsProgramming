@@ -68,12 +68,12 @@ Main::Main(int argc, char* argv[])
 	int i = ImageReader().ReadImage("Models/Untitled.png");
 
 	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/Model1.obj");
-	std::vector<Mesh*> meshes3 = ml.LoadMeshAtPath("Models/plane.obj");
+	std::vector<Mesh*> meshes3 = ml.LoadMeshAtPath("Models/1998_DAIHATSU_MIDGET_II_D-TYPE_export.obj");
 	std::vector<Mesh*> meshes2 = ml.LoadMeshAtPath("Models/SkyboxCube.obj");
 
-	GLObject* obj1 = new GLObject("Test Model", Vector3(0, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1);
+	GLObject* obj1 = new GLObject("Test Model", Vector3(5, 20, 4), Vector3(1, 1, 1), meshes, displayEvent,1);
 	GLObject* obj10 = new GLObject("Skybox", Vector3(0, 0, 0), Vector3(2, 2, 2), meshes2, displayEvent,1);
-	GLObject* obj11 = new GLObject("Plane", Vector3(0,10,0), Vector3(1, 1, 1), meshes3, displayEvent,1);
+	GLObject* obj11 = new GLObject("Plane", Vector3(0,-20,0), Vector3(1, 1, 1), meshes3, displayEvent,1);
 	SceneManager::instance->skyboxId1 = obj10->render3D->objectMeshes[0]->texture;
 
 	SceneManager::instance->Renderables = std::vector<GLObject*>();
@@ -122,7 +122,13 @@ void Main::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	Camera::instance->Update();
 
-	drawLine(startPoint, endPoint);
+	for (size_t i = 0; i < SceneManager::instance->debugLines.size(); i++)
+	{
+		drawLine(SceneManager::instance->debugLines[i].first, SceneManager::instance->debugLines[i].second);
+
+	}
+
+	drawLine(Camera::instance->Transform.Position + Vector3(0.1f,0.1f,.01f), SceneManager::instance->Renderables[0]->Transform.Position);
 
 	//Vector3 rot = SceneManager::instance->FindObject("Plane")->Transform.Rotation;
 	//SceneManager::instance->FindObject("Plane")->Transform.Rotation = rot + Vector3(1, 1, 1);

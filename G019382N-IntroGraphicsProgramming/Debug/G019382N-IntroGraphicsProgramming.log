@@ -1,2 +1,39 @@
-﻿  Sphere.cpp
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382n\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  Camera.cpp
+  Collider.cpp
+  EventHandler.cpp
+  GL2D.cpp
+  GL3D.cpp
+  GLObject.cpp
+  GLUTCallbacks.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(76,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(76,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(104,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(105,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  ImageReader.cpp
+  LightingManager.cpp
+  Main.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(93,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(229,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  MathUtils.cpp
+  Mesh.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Mesh.cpp(25,20): warning C4018: '<': signed/unsigned mismatch
+  ModelLoader.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\ModelLoader.cpp(186,23): warning C4018: '<': signed/unsigned mismatch
+  Renderer3D.cpp
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(52,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(74,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(80,53): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(86,57): warning C4018: '<': signed/unsigned mismatch
+C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(92,53): warning C4018: '<': signed/unsigned mismatch
+  SceneManager.cpp
+  SceneObject.cpp
+  Sphere.cpp
+  SphereCollider.cpp
+  Generating Code...
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\samgr\source\repos\WormegaCONSOLE\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe

@@ -15,6 +15,7 @@ public:
 	bool showControls;
 	int skyboxId1, skyboxId2;
 	std::vector<GLObject*> Renderables;
+	std::vector<std::pair<Vector3, Vector3>> debugLines = std::vector<std::pair<Vector3, Vector3>>();
 
 	SceneManager() {
 		if (instance == nullptr)
@@ -94,12 +95,17 @@ public:
 	}
 
 	std::pair<Vector3,Vector3> SelectObject(float x, float y) {
+		this->debugLines = std::vector<std::pair<Vector3, Vector3>>();
 
-		Vector3 cf = (Camera::instance->lookat_point - Camera::instance->Transform.Position).Normilized();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+
+		Vector3 forward = (Camera::instance->lookat_point - Camera::instance->Transform.Position).Normilized();
+
 
 		for (size_t i = 0; i < this->Renderables.size(); i++)
 		{
-			InterReturn r = this->Renderables[i]->selectionSphere->CheckIfIntersect(Camera::instance->Transform.Position, cf);
+			InterReturn r = this->Renderables[i]->selectionSphere->CheckIfIntersect(Camera::instance->Transform.Position, forward);
 			if (r.result)
 			{
 				std::cout << "Hit the sphere:" << this->Renderables[i]->name << std::endl;
@@ -109,7 +115,9 @@ public:
 			}
 		}
 
-		return std::pair<Vector3, Vector3>(Camera::instance->Transform.Position, cf * 100);
+		this->debugLines.push_back(std::pair<Vector3, Vector3>(Camera::instance->Transform.Position, Camera::instance->Transform.Position + forward * 100));
+
+		return std::pair<Vector3, Vector3>(Camera::instance->Transform.Position, Camera::instance->Transform.Position + forward * 100);
 
 		
 

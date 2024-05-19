@@ -25,9 +25,10 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
     glColor3f(1,1,1);
     object->selectionSphere->Draw(Vector3(1, 1, 1));
-	glTranslatef(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
+	glTranslated(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
     if (object->Transform.Rotation.x >= 360.0f)
         object->Transform.Rotation.x = 0.0f;
 
@@ -40,7 +41,7 @@ void Renderer3D::RenderUpdate()
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
-    glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
+    //glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
     glEnable(GL_TEXTURE_2D);
 
 
@@ -101,13 +102,22 @@ void Renderer3D::RenderUpdate()
         previousLastVertex += objectMeshes[j]->verts.size();
         previousLastUV += objectMeshes[j]->textureUVs.size();
         previousLastNormal += objectMeshes[j]->normals.size();
+
+        //Poop p = (Poop)std::stoi("1");
     }
 
 
     object->selectionSphere->t = this->object->Transform;
+    glPopMatrix();
 }
+
+enum Poop { P, L, K};
 
 void Renderer3D::SetTexture(GLuint image)
 {
 	this->texture = image;
+
+    Poop p = (Poop)std::stoi("1");
+
+
 }
