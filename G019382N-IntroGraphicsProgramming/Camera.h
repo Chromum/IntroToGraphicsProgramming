@@ -19,17 +19,21 @@ public:
 
 	Camera(std::string name) : SceneObject(name) {
 		if (instance == nullptr)
+		{
 			instance = this;
+			this->Transform.Position = Vector3(28.4586182, 15.2535725, 46.5471077);
+		}
 		else
 			delete(this);
 	}
 
 	void Update() {
-		
-		if (!isClickDown)
-			CameraFollowMouse();
-		else if (targetObjectToFollow != nullptr)
+
+		if (targetObjectToFollow != nullptr)
 			FollowObject();
+		else if (!isClickDown)
+			CameraFollowMouse();
+
 
 		ReBuildProjectionMatrix();
 	} 

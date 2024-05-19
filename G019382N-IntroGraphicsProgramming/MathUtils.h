@@ -103,6 +103,28 @@ struct Vector3
 		std::string s = std::to_string(this->x) + ":" + std::to_string(this->y) + ":" + std::to_string(this->z) + "\n";
 		return s;
 	}
+
+
+	static Vector3 MoveTowards(Vector3 current, Vector3 target, float maxDistanceDelta, float deltaTime)
+	{
+		Vector3 direction = target - current;
+
+		float Distance = direction.Magnitude();
+
+		if (Distance <= maxDistanceDelta * deltaTime)
+		{
+			return target;
+		}
+		else
+		{
+			float t = maxDistanceDelta / Distance;
+			return current + direction * t;
+		}
+	}
+
+	Vector3 LookAt() {
+
+	}
 };
 
 struct Quaternion

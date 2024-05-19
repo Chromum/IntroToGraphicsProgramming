@@ -13,8 +13,9 @@ class GLObject : public SceneObject
 {
 public:
 	GLObject(std::string name) : SceneObject(name) {}
-	GLObject(std::string name, Vector3 pos, Vector3 scale, std::vector<Mesh*> meshes, EventHandler* displayEvent, float selectSphereRadius) : SceneObject(name) {
+	GLObject(std::string name, Vector3 pos, Vector3 rot, Vector3 scale, std::vector<Mesh*> meshes, EventHandler* displayEvent, float selectSphereRadius) : SceneObject(name) {
 		this->Transform.Position = pos;
+		this->Transform.Rotation = rot;
 		this->Transform.Scale = scale;
 		render3D = new Renderer3D(displayEvent, this);
 		render3D->objectMeshes = meshes;

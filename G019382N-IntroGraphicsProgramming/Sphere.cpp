@@ -13,7 +13,10 @@ void Sphere::Draw(Vector3 col)
 	//Vector3 e = (Camera::instance->cameraForward + Camera::instance->Transform.Position);
 	glTranslatef(this->parent->Transform.Position.x, this->parent->Transform.Position.y, this->parent->Transform.Position.z);
 	glColor3f(col.x, col.y, col.z);
-	glutWireSphere(this->Radius,16,16);
+	if(!this->isSelected)
+		glutWireSphere(this->Radius,16,16);
+	else
+		glutSolidSphere(this->Radius, 16, 16);
 	glPopMatrix();
 }
 

@@ -20,6 +20,7 @@ public:
 	Transform t;
 	GLObject* parent;
 	float Radius;
+	bool isSelected;
 	void Draw(Vector3 col);
 	InterReturn CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection);
 };

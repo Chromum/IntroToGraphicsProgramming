@@ -8,12 +8,13 @@ class SceneManager {
 public:
 	static SceneManager* instance;
 	SceneObject* sceneGraph;
-	SceneObject* selectedObject;
+	GLObject* selectedObject;
 	int objectCount = 0;
 	bool wireFrame = false;
 	bool showSelectionSpheres;
 	bool showControls;
 	int skyboxId1, skyboxId2;
+	float deltaTime;
 	std::vector<GLObject*> Renderables;
 	std::vector<std::pair<Vector3, Vector3>> debugLines = std::vector<std::pair<Vector3, Vector3>>();
 
@@ -109,6 +110,12 @@ public:
 			if (r.result)
 			{
 				std::cout << "Hit the sphere:" << this->Renderables[i]->name << std::endl;
+				this->selectedObject->selectionSphere->isSelected = false;
+				this->selectedObject = Renderables[i];
+				this->selectedObject->selectionSphere->isSelected = true;
+				
+
+				return std::pair<Vector3, Vector3>(Camera::instance->Transform.Position, Camera::instance->Transform.Position + forward * 100);
 			}
 			else
 			{

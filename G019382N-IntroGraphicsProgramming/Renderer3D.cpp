@@ -41,7 +41,7 @@ void Renderer3D::RenderUpdate()
 	glRotatef(object->Transform.Rotation.y, 1.0f, 0, 0);
 	glRotatef(object->Transform.Rotation.x, 0, 1.0f, 0);
 	glRotatef(object->Transform.Rotation.z, 0, 0, 1.0f);
-    //glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
+    glScalef(object->Transform.Scale.x, object->Transform.Scale.y, object->Transform.Scale.z);
     glEnable(GL_TEXTURE_2D);
 
 
