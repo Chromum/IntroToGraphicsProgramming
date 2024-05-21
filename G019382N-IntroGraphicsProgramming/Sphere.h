@@ -1,5 +1,6 @@
 #pragma once
 #include "MathUtils.h"
+#include "SceneObject.h"
 
 struct InterReturn {
 	bool result;
@@ -10,18 +11,17 @@ struct InterReturn {
 class GLObject;
 
 
-class Sphere
+class Sphere : public SceneObject
 {
 public:
-	Sphere(float Rad, GLObject* par) {
+	Sphere(float Rad, GLObject* par, std::string sphereName) : SceneObject(sphereName) {
 		Radius = Rad;
 		parent = par;
 	}
-	Transform t;
 	GLObject* parent;
 	float Radius;
-	bool isSelected;
-	void Draw(Vector3 col);
+	bool isSelected = false;
+	void Draw();
 	InterReturn CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection);
 };
 

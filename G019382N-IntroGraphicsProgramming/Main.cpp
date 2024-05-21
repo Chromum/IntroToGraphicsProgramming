@@ -41,6 +41,7 @@ Main::Main(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE);
 	glutKeyboardFunc(GLUTCallbacks::KeyboardKeyDown);
 	glutKeyboardUpFunc(GLUTCallbacks::KeyboardKeyUp);
 	glutMouseFunc(GLUTCallbacks::MouseClick);
@@ -77,34 +78,26 @@ Main::Main(int argc, char* argv[])
 
 
 
-	GLObject* obj2 = new GLObject("Building01", Vector3(-38.8824501, -0.0678701401, 56.9566116),Vector3(0,0,0), Vector3(1, 1, 1), meshes4, displayEvent, 1);
-	GLObject* obj4 = new GLObject("Building02", Vector3(-38.8835144, -0.0678701401, -3.58601379), Vector3(0, 0, 0), Vector3(1, 1, 1), meshes4, displayEvent, 1);
-	GLObject* obj3 = new GLObject("Floor", Vector3(-20, 0, 0), Vector3(0, 0, 0), Vector3(1, 1, 1), meshes5, displayEvent, 1);
-	GLObject* obj1 = new GLObject("Test Model", Vector3(23.3199997, -0.0840089321, 62.2700005), Vector3(-240, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1);
-	GLObject* obj10 = new GLObject("Skybox", Vector3(0, 1, 0), Vector3(0, 0, 0), Vector3(2,2,2), meshes2, displayEvent,1);
-	Plane* obj11 = new Plane("Plane", Vector3(100.6, 80.0, -102.2), Vector3(0, 0, 0), Vector3(3, 3, 3), meshes3, displayEvent,3);
+	SceneManager::instance->CreateNewObject(new GLObject("Building01", Vector3(-38.8824501, -0.0678701401, 56.9566116),Vector3(0,0,0), Vector3(1, 1, 1), meshes4, displayEvent, 1), SceneManager::instance->sceneGraph);
+	SceneManager::instance->CreateNewObject(new GLObject("Building02", Vector3(-38.8835144, -0.0678701401, -3.58601379), Vector3(0, 0, 0), Vector3(1, 1, 1), meshes4, displayEvent, 1), SceneManager::instance->sceneGraph);
+	SceneManager::instance->CreateNewObject(new GLObject("Floor", Vector3(-20, 0, 0), Vector3(0, 0, 0), Vector3(1, 1, 1), meshes5, displayEvent, 1), SceneManager::instance->sceneGraph);
+	SceneManager::instance->CreateNewObject(new GLObject("Test Model", Vector3(23.3199997, -0.0840089321, 62.2700005), Vector3(-240, 0, 0), Vector3(1, 1, 1), meshes, displayEvent,1), SceneManager::instance->sceneGraph);
+	SceneManager::instance->CreateNewObject(new GLObject("Skybox", Vector3(0, 1, 0), Vector3(0, 0, 0), Vector3(2,2,2), meshes2, displayEvent,1), SceneManager::instance->sceneGraph);
+	SceneManager::instance->CreateNewObject(new Plane("Plane", Vector3(100.6, 80.0, -102.2), Vector3(0, 0, 0), Vector3(3, 3, 3), meshes3, displayEvent, 3), SceneManager::instance->sceneGraph);
 
-	GLObject* objRoot = new GLObject("Man", Vector3(0, 1, 0), Vector3(0, 0, 0), Vector3(2,2,2), meshes6, displayEvent, .1f);
+	SceneManager::instance->CreateNewObject(new GLObject("ManFIRST", Vector3(5, 5, 5), Vector3(0, 0, 0), Vector3(2,2,2), meshes6, displayEvent, .1f), SceneManager::instance->sceneGraph);
 
 	for (size_t i = 0; i < 6; i++)
 	{
 		for (size_t j = 0; j < 6; j++)
 		{
-			SceneManager::instance->CreateNewObject(new GLObject("Man" + (i+j), Vector3(i+1, 1, j+1), Vector3(0, 0, 0), Vector3(2,2,2), meshes6, displayEvent, .1f), objRoot);
+			SceneManager::instance->CreateNewObject(new GLObject("Man" + (i+j), Vector3(i+1, 1, j+1), Vector3(0, 0, 0), Vector3(1,1,1), meshes6, displayEvent, .1f), dynamic_cast<GLObject*>(SceneManager::instance->FindObject("ManFIRST")));
 		}
 	}
 
-	GLObject* objMan = new GLObject("Man", Vector3(0, 1, 0), Vector3(0, 0, 0), Vector3(1,1,1), meshes6, displayEvent, 1);
-	SceneManager::instance->skyboxId1 = obj10->render3D->objectMeshes[0]->texture;
+	SceneManager::instance->skyboxId1 = dynamic_cast<GLObject*>(SceneManager::instance->FindObject("Skybox"))->render3D->objectMeshes[0]->texture;
 
-	SceneManager::instance->CreateNewObject(obj11);
-	SceneManager::instance->CreateNewObject(obj10);
-	SceneManager::instance->CreateNewObject(obj1);
-	SceneManager::instance->CreateNewObject(obj2);
-	SceneManager::instance->CreateNewObject(obj3);
-	SceneManager::instance->CreateNewObject(obj4);
-	SceneManager::instance->CreateNewObject(objMan);
-	SceneManager::instance->selectedObject = obj10;
+	SceneManager::instance->selectedObject = SceneManager::instance->Renderables[0];
 
 	LightingManager();
 	LightingManager::instance->AddLight(
@@ -149,21 +142,20 @@ void Main::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	Camera::instance->Update();
 
+
+
+
 	for (size_t i = 0; i < SceneManager::instance->Renderables.size(); i++)
 	{
+		glPushMatrix();
+
+		SceneManager::instance->Renderables[i]->selectionSphere->Transform.Position = SceneManager::instance->Renderables[i]->Transform.Position;
 		SceneManager::instance->Renderables[i]->Update();
+		glPopMatrix();
 	}
 
-	//Draw Lines to all objects
-	//for (size_t i = 0; i < SceneManager::instance->debugLines.size(); i++)
-	//{
-	//	drawLine(SceneManager::instance->debugLines[i].first, SceneManager::instance->debugLines[i].second);
+	SceneManager::instance->sceneGraph->graph->RenderAllObjects(SceneManager::instance->sceneGraph->graph->head);
 
-	//}
-
-	drawLine(Camera::instance->Transform.Position + Vector3(0.1f,0.1f,.01f), SceneManager::instance->Renderables[0]->Transform.Position);
-
-	displayEvent->FireEvent();
 
 	DrawHUD();
 
@@ -395,11 +387,7 @@ void Main::DrawTextAtPos(const char* text, Vector2 pos) {
 }
 
 void Main::SelectObject(float x, float y) {
-	std::pair<Vector3,Vector3> e = SceneManager::instance->SelectObject(x,y);
-
-	startPoint = e.first;
-	endPoint = e.second;
-
+	SceneManager::instance->SelectObject(x,y);
 }
 
 

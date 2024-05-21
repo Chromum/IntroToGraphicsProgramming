@@ -7,7 +7,8 @@
 #include "GL/freeglut_ext.h"
 #include "GL/freeglut_std.h"
 #include "ModelLoader.h"
-
+#include "LinkedList.h"
+#include "SceneObject.h"
 
 Renderer3D::Renderer3D(GLObject* object)
 {
@@ -25,10 +26,10 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
     glColor3f(1,1,1);
-    object->selectionSphere->Draw(Vector3(1, 1, 1));
+
 	glTranslated(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
+
     if (object->Transform.Rotation.x >= 360.0f)
         object->Transform.Rotation.x = 0.0f;
 
@@ -51,47 +52,50 @@ void Renderer3D::RenderUpdate()
 
     for (int j = 0; j < objectMeshes.size(); j++)
     {
+        Mesh* objectMesh = objectMeshes[j];
         glEnable(GL_TEXTURE_2D);
-        if(objectMeshes[j]->texture != 0)
-            glBindTexture(GL_TEXTURE_2D, (GLuint)objectMeshes[j]->texture);
+        if(objectMesh->texture != 0)
+            glBindTexture(GL_TEXTURE_2D, (GLuint)objectMesh->texture);
         else
             glBindTexture(GL_TEXTURE_2D, 2);
 
-        glMaterialfv(GL_FRONT, GL_AMBIENT, &(objectMeshes[j]->matData->ambient.x));
-        glMaterialfv(GL_FRONT, GL_SPECULAR, &(objectMeshes[j]->matData->specular.x));
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, &(objectMeshes[j]->matData->diffuse.x));
+        glMaterialfv(GL_FRONT, GL_AMBIENT, &(objectMesh->matData->ambient.x));
+        glMaterialfv(GL_FRONT, GL_SPECULAR, &(objectMesh->matData->specular.x));
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, &(objectMesh->matData->diffuse.x));
 
 
 
-        if (objectMeshes[j]->verts.empty() || objectMeshes[j]->verts.data() == nullptr)
+        if (objectMesh->verts.empty() || objectMesh->verts.data() == nullptr)
             continue;  // Skip empty mesh
 
-        if (objectMeshes[j]->isQuadMesh)
+        if (objectMesh->isQuadMesh)
             glBegin(GL_QUADS);
         else
             glBegin(GL_TRIANGLES);
 
-        for (int i = 0; i < objectMeshes[j]->indicies.size(); i++)
+        for (int i = 0; i < objectMesh->indicies.size(); i++)
         {
-            int VertexIndicie = objectMeshes[j]->indicies[i] - 1 - previousLastVertex;
-            int UVVertexIndicie = objectMeshes[j]->UVindicies[i] - 1 - previousLastUV;
-            int NormalIndicie = objectMeshes[j]->Normalindicies[i] - 1 - previousLastNormal;
+            
 
-            if (0 <= NormalIndicie && NormalIndicie < objectMeshes[j]->Normalindicies.size())
+            int VertexIndicie = objectMesh->indicies[i] - 1 - previousLastVertex;
+            int UVVertexIndicie = objectMesh->UVindicies[i] - 1 - previousLastUV;
+            int NormalIndicie = objectMesh->Normalindicies[i] - 1 - previousLastNormal;
+
+            if (0 <= NormalIndicie && NormalIndicie < objectMesh->Normalindicies.size())
             {
-                Vector3* normal = objectMeshes[j]->normals[NormalIndicie];
+                Vector3* normal = objectMesh->normals[NormalIndicie];
                 glNormal3f(normal->x, normal->y, normal->z);
             }
 
-            if (0 <= UVVertexIndicie && UVVertexIndicie < objectMeshes[j]->textureUVs.size())
+            if (0 <= UVVertexIndicie && UVVertexIndicie < objectMesh->textureUVs.size())
             {
-                Vector2* UV = objectMeshes[j]->textureUVs[UVVertexIndicie];
+                Vector2* UV = objectMesh->textureUVs[UVVertexIndicie];
                 glTexCoord2f(UV->x, UV->y);
             }
 
-            if (0 <= VertexIndicie && VertexIndicie < objectMeshes[j]->verts.size())
+            if (0 <= VertexIndicie && VertexIndicie < objectMesh->verts.size())
             {
-                Vector3* vertex = objectMeshes[j]->verts[VertexIndicie];
+                Vector3* vertex = objectMesh->verts[VertexIndicie];
                 glVertex3f(vertex->x, vertex->y, vertex->z);
             }
         }
@@ -99,25 +103,18 @@ void Renderer3D::RenderUpdate()
         glEnd();
 
         // Update previous last indices
-        previousLastVertex += objectMeshes[j]->verts.size();
-        previousLastUV += objectMeshes[j]->textureUVs.size();
-        previousLastNormal += objectMeshes[j]->normals.size();
+        previousLastVertex += objectMesh->verts.size();
+        previousLastUV += objectMesh->textureUVs.size();
+        previousLastNormal += objectMesh->normals.size();
 
-        //Poop p = (Poop)std::stoi("1");
     }
-
-
-    object->selectionSphere->t = this->object->Transform;
-    glPopMatrix();
 }
 
-enum Poop { P, L, K};
 
 void Renderer3D::SetTexture(GLuint image)
 {
 	this->texture = image;
 
-    Poop p = (Poop)std::stoi("1");
 
 
 }

@@ -6,7 +6,7 @@ void GLObject::Update()
 	//	this->render3D->RenderUpdate();
 
 	if (this->selectionSphere != nullptr)
-		this->selectionSphere->Draw(Vector3(1,1,1));
+		this->selectionSphere->Draw();
 }
 
 

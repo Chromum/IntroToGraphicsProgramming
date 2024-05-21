@@ -6,18 +6,14 @@
 #include <utility>
 
 
-void Sphere::Draw(Vector3 col) 
+void Sphere::Draw() 
 {
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	//Vector3 e = (Camera::instance->cameraForward + Camera::instance->Transform.Position);
-	glTranslatef(this->parent->Transform.Position.x, this->parent->Transform.Position.y, this->parent->Transform.Position.z);
-	glColor3f(col.x, col.y, col.z);
+	glTranslatef(this->Transform.Position.x, this->Transform.Position.y, this->Transform.Position.z);
+	glColor3f(0,0,0);
 	if(!this->isSelected)
 		glutWireSphere(this->Radius,16,16);
 	else
 		glutSolidSphere(this->Radius, 16, 16);
-	glPopMatrix();
 }
 
 InterReturn Sphere::CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection)
@@ -26,7 +22,6 @@ InterReturn Sphere::CheckIfIntersect(Vector3 rayStart, Vector3 rayDirection)
 
 	Vector3 origin = rayStart - this->parent->Transform.Position;
 	
-	SceneManager::instance->debugLines.push_back(std::pair<Vector3, Vector3>(rayStart, this->parent->Transform.Position));
 
 	float a = rayDirection.SqrMagnitude();
 	float b = 2 * ((origin.x * rayDirection.x) + (origin.y * rayDirection.y) + (origin.z * rayDirection.z));

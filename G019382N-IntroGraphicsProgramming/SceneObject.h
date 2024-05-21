@@ -10,6 +10,8 @@ public:
 	SceneObject(std::string name) {
 		this->name = name;
 	};
+	Vector3 LocalPos;
+	SceneObject* parent;
 	std::string name;
 	LinkedList* graph;
 	Transform Transform;

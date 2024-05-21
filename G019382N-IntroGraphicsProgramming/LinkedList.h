@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-//#include "SceneObject.h"
+#include "Sphere.h"
 #include "GLObject.h"
 
 struct Node {
@@ -188,12 +188,14 @@ public:
 			// Found the object with the specified name
 			return current->data;
 		}
-
-		// Search within children (if any)
-		if (current->next->data->graph != nullptr) {
-			SceneObject* childObject = GetObjectByName(desiredName, current->next->data->graph->head);
-			if (childObject != nullptr) {
-				return childObject; // Found in children
+		if (current->next != nullptr)
+		{
+			// Search within children (if any)
+			if (current->next->data->graph != nullptr) {
+				SceneObject* childObject = GetObjectByName(desiredName, current->next->data->graph->head);
+				if (childObject != nullptr) {
+					return childObject; // Found in children
+				}
 			}
 		}
 
@@ -201,27 +203,55 @@ public:
 		return GetObjectByName(desiredName, current->next);
 	}
 
-	std::vector<GLObject*> GetAllObjects(Node* current)
-	{
+	std::vector<GLObject*> GetAllObjects(Node* current) {
 		std::vector<GLObject*> objects;
 
-		if (current == nullptr) {
-			// Base case: Reached the end of the list, object not found
-			return objects;
+		while (current != nullptr) {
+			if (current->data) {
+				if (GLObject* q = static_cast<GLObject*>(current->data)) {
+					objects.push_back(q);
+				}
+
+				if (current->data->graph) {
+					std::vector<GLObject*> children = current->data->graph->GetAllObjects(current->data->graph->head->next);
+					objects.insert(objects.end(), children.begin(), children.end());
+				}
+			}
+			// Move to the next node
+			current = current->next;
 		}
 
-		if (GLObject* q = dynamic_cast<GLObject*>(current->data)) {
-			// Found the object with the specified name
-			objects.push_back(q);
-		}
-
-		if (current->data->graph != nullptr)
-		{
-			std::vector<GLObject*> childern = current->data->graph->GetAllObjects(current->data->graph->head);
-			objects.insert(objects.end(), childern.begin(), childern.end());;
-		}
-
-		// Move to the next node
-		return GetAllObjects(current->next);
+		return objects;
 	}
+
+	void RenderAllObjects(Node* startPoint) {
+		glPushMatrix();
+		Node* current = startPoint;
+		while (current != nullptr) {
+			if (GLObject* obj = dynamic_cast<GLObject*>(current->data)) {
+				// Save the current transformation matrix
+				glPushMatrix();
+
+				if (obj != nullptr)
+					obj->render3D->RenderUpdate();
+
+				// Restore the previous transformation matrix
+				
+
+				if (obj->graph != nullptr && obj->graph != this)
+					obj->graph->RenderAllObjects(obj->graph->head->next);
+				glPopMatrix();
+			}
+
+			if (Sphere* sphere = dynamic_cast<Sphere*>(current->data)) {
+				sphere->Transform.Position = this->head->data->Transform.Position;
+				//sphere->Draw(Vector3(0, 0, 0));
+				// No need for glPopMatrix() here since no push was done
+			}
+
+			current = current->next;
+		}
+		glPopMatrix();
+	}
+
 };
