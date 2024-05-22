@@ -142,9 +142,6 @@ void Main::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	Camera::instance->Update();
 
-
-
-
 	for (size_t i = 0; i < SceneManager::instance->Renderables.size(); i++)
 	{
 		glPushMatrix();

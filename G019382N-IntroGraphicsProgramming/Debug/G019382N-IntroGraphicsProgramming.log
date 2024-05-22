@@ -1,42 +1,67 @@
-﻿  Main.cpp
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,63): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,51): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,39): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(9,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(9,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(10,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(10,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(12,49): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(12,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(13,49): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(13,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(15,48): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(15,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(16,49): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(18,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(19,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(21,51): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(21,37): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(22,51): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(22,37): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(24,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(24,37): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(25,49): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(25,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,105): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,91): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,78): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,106): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,91): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,78): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,104): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,90): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,77): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(86,83): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(86,69): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(94,89): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(94,81): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(107,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(335,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382N\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
+﻿  GLUTCallbacks.cpp
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,63): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(76,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(76,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(100,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(101,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(104,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\GLUTCallbacks.cpp(105,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Main.cpp
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,63): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(9,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(9,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(10,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(10,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(12,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(12,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(13,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(13,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(15,48): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(15,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(16,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(18,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(19,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(21,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(21,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(22,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(22,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(24,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(24,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(25,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Plane.h(25,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,105): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,91): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(81,78): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,106): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,91): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(82,78): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,104): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,90): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(84,77): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(86,83): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(86,69): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(94,89): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(94,81): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(107,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Main.cpp(335,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Renderer3D.cpp
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(58,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(81,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(89,53): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(95,57): warning C4018: '<': signed/unsigned mismatch
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Renderer3D.cpp(101,53): warning C4018: '<': signed/unsigned mismatch
+  SceneManager.cpp
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,63): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\G019382N-IntroGraphicsProgramming\Camera.h(24,39): warning C4305: 'argument': truncation from 'double' to 'float'
+  SceneObject.cpp
+  Generating Code...
+  G019382N-IntroGraphicsProgramming.vcxproj -> C:\Users\G019382N.STUDENT.003\Documents\GitHub\IntroToGraphicsProgramming\Debug\G019382N-IntroGraphicsProgramming.exe
