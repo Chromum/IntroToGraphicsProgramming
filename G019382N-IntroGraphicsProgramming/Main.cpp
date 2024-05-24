@@ -39,6 +39,7 @@ Main::Main(int argc, char* argv[])
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(8, GLUTCallbacks::Timer, 8);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);
@@ -69,7 +70,7 @@ Main::Main(int argc, char* argv[])
 	ModelLoader ml = ModelLoader();
 	int i = ImageReader().ReadImage("Models/Untitled.png");
 
-	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/Model1.obj");
+	std::vector<Mesh*> meshes = ml.LoadMeshAtPath("Models/house.obj");
 	std::vector<Mesh*> meshes3 = ml.LoadMeshAtPath("Models/plane.obj");
 	std::vector<Mesh*> meshes2 = ml.LoadMeshAtPath("Models/SkyboxCube.obj");
 	std::vector<Mesh*> meshes4 = ml.LoadMeshAtPath("Models/building.obj");

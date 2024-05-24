@@ -26,12 +26,7 @@ Renderer3D::Renderer3D(EventHandler* handler, GLObject* object)
 void Renderer3D::RenderUpdate()
 {
     glMatrixMode(GL_MODELVIEW);
-    glColor3f(1,1,1);
-
-    GLfloat matrix[16];
-    glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
-
-
+    glColor3f(1, 1, 1);
 
 	glTranslated(object->Transform.Position.x, object->Transform.Position.y, object->Transform.Position.z);
 
@@ -80,8 +75,6 @@ void Renderer3D::RenderUpdate()
 
         for (int i = 0; i < objectMesh->indicies.size(); i++)
         {
-            
-
             int VertexIndicie = objectMesh->indicies[i] - 1 - previousLastVertex;
             int UVVertexIndicie = objectMesh->UVindicies[i] - 1 - previousLastUV;
             int NormalIndicie = objectMesh->Normalindicies[i] - 1 - previousLastNormal;

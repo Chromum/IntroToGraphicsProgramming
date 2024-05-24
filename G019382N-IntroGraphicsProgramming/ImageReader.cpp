@@ -14,10 +14,6 @@ GLuint ImageReader::ReadImage(std::string path)
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* data = stbi_load(path.c_str(), &width, &height, &components, 3);
 
-
-
-
-
 	GLuint tex = 0;
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
